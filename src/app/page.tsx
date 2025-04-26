@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Slider from "@/components/ui/Slider";
 
 export default function Home() {
   return (
     <div>
-      Hello
+      <Slider />
     </div>
   );
 }
