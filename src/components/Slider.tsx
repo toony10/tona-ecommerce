@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { Button } from '../ui/button';
+import { Button } from './ui/button';
 import Link from "next/link";
 import Image from "next/image";
 
@@ -67,7 +67,7 @@ export default function Slider() {
                     </div>
                 )) }
             </div>
-            <div className="absolute m-auto left-1/2 -bottom-8 flex gap-4">
+            <div className="absolute m-auto left-1/2 bottom-2 flex gap-4">
                 {
                     slides.map((slide, index) => (
                         <div key={ slide.id } className={ `w-3 h-3 rounded-full ring-1 ring-gray-600 cursor-pointer flex items-center justify-center ${currentSlide === index ? 'scale-150' : ''} duration-1000` } onClick={ () => setCurrentSlide(index) }>
