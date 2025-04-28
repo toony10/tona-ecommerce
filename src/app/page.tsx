@@ -1,3 +1,4 @@
+import FeaturedProducts from "@/components/FeaturedProducts";
 import ProductList from "@/components/ProductList";
 import Slider from "@/components/Slider";
 
@@ -6,6 +7,7 @@ export default function Home() {
     <div>
       <Slider />
       <ProductList />
+      <FeaturedProducts />
     </div>
   );
 }
