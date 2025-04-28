@@ -16,10 +16,10 @@ export default function ProductsList() {
                 </Link>
                 <div className="p-0.5">
                     <div className="flex items-center justify-between w-full">
-                        <h1 className="font-bold">Black T-shirt</h1>
-                        <h3 className="text-sm font-semibold">12.99$</h3>
+                        <span className="font-bold">Black T-shirt</span>
+                        <span className="text-sm font-semibold">12.99$</span>
                     </div>
-                    <h1 className="font-semibold text-gray-600 min-h-16">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
+                    <p className="font-semibold text-gray-600 min-h-16">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     <Button className="w-24 rounded-full border-[1px] border-[#E63946] text-[#E63946] cursor-pointer hover:bg-[#E63946] hover:text-white transition-all duration-300">Add To Cart</Button>
                 </div>
             </div>
@@ -35,10 +35,10 @@ export default function ProductsList() {
                 </Link>
                 <div className="p-0.5">
                     <div className="flex items-center justify-between w-full">
-                        <h1 className="font-bold">Black T-shirt</h1>
-                        <h3 className="text-sm font-semibold">12.99$</h3>
+                        <span className="font-bold">Black T-shirt</span>
+                        <span className="text-sm font-semibold">12.99$</span>
                     </div>
-                    <h1 className="font-semibold text-gray-600 min-h-16">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
+                    <p className="font-semibold text-gray-600 min-h-16">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     <Button className="w-24 rounded-full border-[1px] border-[#E63946] text-[#E63946] cursor-pointer hover:bg-[#E63946] hover:text-white transition-all duration-300">Add To Cart</Button>
                 </div>
             </div>
@@ -54,10 +54,10 @@ export default function ProductsList() {
                 </Link>
                 <div className="p-0.5">
                     <div className="flex items-center justify-between w-full">
-                        <h1 className="font-bold">Black T-shirt</h1>
-                        <h3 className="text-sm font-semibold">12.99$</h3>
+                        <span className="font-bold">Black T-shirt</span>
+                        <span className="text-sm font-semibold">12.99$</span>
                     </div>
-                    <h1 className="font-semibold text-gray-600 min-h-16">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
+                    <p className="font-semibold text-gray-600 min-h-16">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     <Button className="w-24 rounded-full border-[1px] border-[#E63946] text-[#E63946] cursor-pointer hover:bg-[#E63946] hover:text-white transition-all duration-300">Add To Cart</Button>
                 </div>
             </div>
@@ -73,13 +73,12 @@ export default function ProductsList() {
                 </Link>
                 <div className="p-0.5">
                     <div className="flex items-center justify-between w-full">
-                        <h1 className="font-bold">Black T-shirt</h1>
-                        <h3 className="text-sm font-semibold">12.99$</h3>
+                        <span className="font-bold">Black T-shirt</span>
+                        <span className="text-sm font-semibold">12.99$</span>
                     </div>
-                    <h1 className="font-semibold text-gray-600 min-h-16">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
+                    <p className="font-semibold text-gray-600 min-h-16">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     <Button className="w-24 rounded-full border-[1px] border-[#E63946] text-[#E63946] cursor-pointer hover:bg-[#E63946] hover:text-white transition-all duration-300">Add To Cart</Button>
                 </div>
-
             </div>
         </div>
     )
