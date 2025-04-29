@@ -29,6 +29,13 @@ export default function Footer() {
                                 +1 234 567 890
                             </Link>
                         </li>
+                        <li className='flex gap-5'>
+                            <Image src="/assets/facebook.png" sizes='100vh' className='cursor-pointer' alt="" width={ 21 } height={ 21 } />
+                            <Image src="/assets/instagram.png" sizes='100vh' className='cursor-pointer' alt="" width={ 21 } height={ 21 } />
+                            <Image src="/assets/youtube.png" sizes='100vh' className='cursor-pointer' alt="" width={ 21 } height={ 21 } />
+                            <Image src="/assets/pinterest.png" sizes='100vh' className='cursor-pointer' alt="" width={ 21 } height={ 21 } />
+                            <Image src="/assets/x.png" alt="" sizes='100vh' className='cursor-pointer' width={ 21 } height={ 21 } />
+                        </li>
                     </ul>
                 </div>
                 {/* COL */ }
