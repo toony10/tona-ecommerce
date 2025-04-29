@@ -5,10 +5,12 @@ export default function Filters() {
     return (
         <div className="mt-10 flex flex-col md:flex-row justify-between items-center gap-10">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 justify-between items-center gap-3">
-                <DropdownMenu title="Type" subTitle='types' options={ ['men', 'womens'] } />
 
                 <Input placeholder="min price" className="w-32 rounded-full" />
                 <Input placeholder="max price" className="w-32 rounded-full" />
+
+                <DropdownMenu title="Type" subTitle='types' options={ ['men', 'womens'] } />
+
 
                 <DropdownMenu title="Sizes" subTitle="sizes" options={ ['sm', 'md', 'lg', 'xl', '2xl'] } />
 
