@@ -15,7 +15,7 @@ export default function Navbar() {
         { name: 'Contact', href: '/contact' }
     ]
     return (
-        <div className='h-28 px-10 md:px-24 relative flex flex-col md:flex-row justify-between mb-3 md:mb-0'>
+        <div className='h-32 pb-4 md:pb-0 px-10 md:px-24 relative flex flex-col md:flex-row justify-between mb-3 md:mb-0 '>
             <div className='flex items-center justify-between lg:gap-5'>
                 <Logo />
                 {/* MOBILE */ }
