@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import MobileMenu from './MobileMenu'
-import Logo from './Logo'
+import Logo from './Shared/Logo'
 import SearchBar from './SearchBar'
 import NavIcons from './NavIcons'
 

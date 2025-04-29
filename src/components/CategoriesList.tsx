@@ -1,4 +1,4 @@
-import CategoryCard from './CategoryCard'
+import CategoryCard from "./Shared/CategoryCard"
 export default function CategoriesList() {
     return (
         <div className='px-4 overflow-x-scroll scrollbar-custom'>
