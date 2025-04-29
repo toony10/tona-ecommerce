@@ -1,6 +1,5 @@
 import CategoriesList from "@/components/CategoriesList";
 import Heading from "@/components/Shared/Heading";
-import FeaturedProducts from "@/components/ProductsList";
 import ProductsList from "@/components/ProductsList";
 import Slider from "@/components/Slider";
 
