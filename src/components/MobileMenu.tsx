@@ -2,12 +2,14 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 
 interface MenuProps {
     Links: { name: string; href: string }[];
 }
 export default function MobileMenu({ Links }: MenuProps) {
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false)
     const toggleMenu = () => {
         setIsOpen(!isOpen)
@@ -16,10 +18,13 @@ export default function MobileMenu({ Links }: MenuProps) {
     return (
         <div>
             <Image src='/assets/menu.png' width={ 28 } height={ 28 } alt="#" className="cursor-pointer md:hidden" onClick={ () => toggleMenu() } />
-            <ul className="absolute bg-black text-white text-xl left-0 top-32 w-full h-[calc(100vh-80px)] flex flex-col justify-center items-center gap-8 z-10 container" style={ { display: isOpen ? 'flex' : 'none' } }>
+            <ul className="absolute bg-gray-900 text-white text-2xl  tracking-widest left-0 top-32 w-full h-[calc(100vh)] flex flex-col justify-center items-center gap-8 z-10 container" style={ { display: isOpen ? 'flex' : 'none' } }>
                 { isOpen && (
                     Links.map((link, index) => (
-                        <li key={ index }>
+                        <li key={ index } onClick={ () => {
+                            router.push(link.href)
+                            toggleMenu();
+                        } }>
                             <Link href={ link.href }>
                                 { link.name }
                             </Link>
