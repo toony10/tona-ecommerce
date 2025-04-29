@@ -1,3 +1,5 @@
+import CategoriesList from "@/components/CategoriesList";
+import Heading from "@/components/Heading";
 import FeaturedProducts from "@/components/ProductsList";
 import ProductsList from "@/components/ProductsList";
 import Slider from "@/components/Slider";
@@ -7,10 +9,16 @@ export default function Home() {
     <div>
       <Slider />
 
-      <div className="px-10 md:px-24 m-10">
-        <h1 className='text-3xl font-semibold text-gray-950 mb-12 text-center md:text-start'>Featured Products</h1>
+      <div className="px-10 md:px-24 md:mx-auto m-10">
+        <Heading text="Featured Products" />
         <ProductsList />
       </div>
+
+      <div className="mt-20">
+        <Heading text="Catecories" container />
+        <CategoriesList />
+      </div>
+
     </div>
   );
 }
