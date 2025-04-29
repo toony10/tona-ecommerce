@@ -22,7 +22,7 @@ export default function MobileMenu({ Links }: MenuProps) {
                 { isOpen && (
                     Links.map((link, index) => (
                         <li key={ index } onClick={ () => {
-                            router.push(link.href)
+                            router.push(link.href);
                             toggleMenu();
                         } }>
                             <Link href={ link.href }>
