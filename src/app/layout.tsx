@@ -2,12 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Roboto } from 'next/font/google'
+import { Inter } from "next/font/google";
 
-const roboto = Roboto({
-  subsets: ['latin'],
-  weight: ['400'],
-})
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Tona",
@@ -21,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={ roboto.className }>
+      <body className={ inter.className }>
         <Navbar />
         { children }
         <Footer />
