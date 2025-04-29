@@ -17,7 +17,7 @@ export default function ProductCard() {
                     <span className="text-sm font-semibold text-gray-900">12.99$</span>
                 </div>
                 <p className=" text-gray-600 min-h-16">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <Button className="w-24 rounded-full border-[1px] font-semibold border-[#E63946] text-[#E63946] cursor-pointer hover:bg-[#E63946] hover:text-white transition-all duration-300">Add To Cart</Button>
+                <Button className="w-24 px-14 rounded-full border-[1px] font-semibold border-[#E63946] text-[#E63946] cursor-pointer hover:bg-[#E63946] hover:text-white transition-all duration-300">Add To Cart</Button>
             </div>
         </div>
     )
