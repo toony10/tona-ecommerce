@@ -54,7 +54,7 @@ export default function Slider() {
                             <h2 className="text-5xl lg:text-6xl 2xl:text-8xl font-semibold">
                                 { slide.title }
                             </h2>
-                            <Link href={ slide.url }>
+                            <Link href='/list'>
                                 <Button className="text-black hover:bg-gray-950 hover:text-white border bg-gray-50 transition-all ease-in-out duration-300 cursor-pointer w-40 h-10 tracking-widest text-lg">
                                     Shop Now
                                 </Button>

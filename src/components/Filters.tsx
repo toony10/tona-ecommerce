@@ -19,7 +19,7 @@ export default function Filters() {
 
                 <DropdownMenu title="Category" subTitle="categories" options={ ['T-shirts', 'sutis', 'shoses', 'accecores'] } />
 
-                <DropdownMenu title="All Filters" subTitle="all" options={ ['option', 'option', 'option', 'option'] } />
+                <DropdownMenu title="All Filters" subTitle="all" options={ ['option1', 'option2', 'option3', 'option4'] } />
             </div>
 
             <div>
