@@ -26,10 +26,11 @@ export default function Navbar() {
                 {/* DESKTOP MENU */ }
                 <ul className='hidden md:flex items-center justify-between h-full gap-6 transition duration-500'>
                     { Links.map((link, index) => (
-                        <li key={ index } className='hover:font-semibold'>
+                        <li key={ index } className='group text-gray-900'>
                             <Link href={ link.href }>
                                 { link.name }
                             </Link>
+                            <div className='bg-gray-900 h-[2px] w-0 group-hover:w-full transition-all duration-300' />
                         </li>
                     )) }
                 </ul>

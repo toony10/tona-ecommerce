@@ -133,9 +133,13 @@
   }
   body {
     @apply bg-background text-foreground;
+    .CustomeContainer{
+    @apply px-10 md:px-24 relative
+    }
   }
 }
-
+  
+  
 
 
 /* SCROLLBAR */

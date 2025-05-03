@@ -1,6 +1,6 @@
 import CategoriesList from "@/components/CategoriesList";
 import Heading from "@/components/Shared/Heading";
-import ProductsList from "@/components/ProductsList";
+import ProductsList from "@/components/ui/ProductsList";
 import Slider from "@/components/Slider";
 
 export default function Home() {

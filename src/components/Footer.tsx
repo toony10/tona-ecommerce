@@ -29,7 +29,7 @@ export default function Footer() {
                                 +1 234 567 890
                             </Link>
                         </li>
-                        <li className='flex gap-5'>
+                        <li className='grid grid-cols-3 xl:grid-cols-5 justify-between gap-5'>
                             <Image src="/assets/facebook.png" sizes='100vh' className='cursor-pointer' alt="" width={ 21 } height={ 21 } />
                             <Image src="/assets/instagram.png" sizes='100vh' className='cursor-pointer' alt="" width={ 21 } height={ 21 } />
                             <Image src="/assets/youtube.png" sizes='100vh' className='cursor-pointer' alt="" width={ 21 } height={ 21 } />
@@ -105,7 +105,7 @@ export default function Footer() {
                     </ul>
                 </div>
                 {/* COL */ }
-                <div className='flex flex-col gap-10'>
+                <div className='flex flex-col gap-10 col-span-2 md:col-span-1'>
                     <h1 className='text-lg tracking-tight min-h-11 font-bold'>SUBSCRIBE</h1>
                     <ul className='flex flex-col justify-between gap-9'>
                         <li>

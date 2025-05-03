@@ -1,4 +1,4 @@
-import ProductCard from "./Shared/ProductCard"
+import ProductCard from "../Shared/ProductCard"
 export default function ProductsList() {
     return (
 

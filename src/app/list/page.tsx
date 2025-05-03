@@ -1,5 +1,5 @@
 import Filters from "@/components/Filters"
-import ProductsList from "@/components/ProductsList"
+import ProductsList from "@/components/ui/ProductsList"
 import Heading from "@/components/Shared/Heading"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
