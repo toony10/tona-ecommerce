@@ -21,8 +21,6 @@ export default function Add() {
     const decrease = () => {
         if (Qty >= 2) {
             setQty((prev) => prev - 1)
-        } else {
-            Qty;
         }
     }
     return (
@@ -50,7 +48,7 @@ export default function Add() {
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
-                                            <AlertDialogCancel>OK</AlertDialogCancel>
+                                            <AlertDialogCancel className='cursor-pointer'>OK</AlertDialogCancel>
                                         </AlertDialogFooter>
                                     </AlertDialogContent>
                                 </AlertDialog>
