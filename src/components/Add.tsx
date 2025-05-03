@@ -7,7 +7,7 @@ import Logo from './Shared/Logo';
 
 export default function Add() {
     const [Qty, setQty] = useState(1);
-    const stok = 5;
+    const stok = 10;
     const [aleart, setAleart] = useState(false);
 
     const increase = () => {
@@ -46,7 +46,7 @@ export default function Add() {
                                             </div>
                                             <AlertDialogTitle className='text-center'>Oops! Not Enough Stock 😅</AlertDialogTitle>
                                             <AlertDialogDescription className='text-center'>
-                                                Looks like you really love this item, and we totally get it! Unfortunately, we don’t have that many in stock right now. Try reducing the quantity or check back soon… more might be on the way!
+                                                Looks like you really love this item, and we totally get it! Unfortunately, we don&apos;t have that many in stock right now. Try reducing the quantity or check back soon… more might be on the way!
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
@@ -58,9 +58,7 @@ export default function Add() {
 
 
                     </div>
-
-
-                    <p className='w-1/2'>Only <span className='text-orange-400 text-center mr-0.5'>{ stok } Items</span>left <br /> Don't miss it!</p>
+                    { stok <= 10 && <p className='w-1/2'>Only <span className='text-orange-400 text-center mr-0.5'>{ stok } Items</span>left <br /> Don&apos;t miss it!</p> }
                 </div>
                 <div className=''>
                     <Button className="w-24 px-12 rounded-full border-[1px] font-semibold border-[#E63946] text-[#E63946] cursor-pointer hover:bg-[#E63946] hover:text-white transition-all duration-300">Add To Cart</Button>
