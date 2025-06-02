@@ -1,7 +1,6 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -11,26 +10,42 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from './ui/button'
 import CartModel from './CartModel'
+import { supabaseClient } from '@/utils/supabase/SB-client'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function NavIcons() {
-    const isLogin = true;
-    const router = useRouter()
 
+    const router = useRouter();
+    const [user, setUser] = useState<any>(null);
+
+    const handleSignOut = async () => {
+        await supabaseClient.auth.signOut();
+        setUser(null);
+    };
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const { data } = await supabaseClient.auth.getUser();
+            setUser(data?.user);
+        };
+        fetchUser();
+    }, []);
 
     return (
         <div className='flex items-center justify-between gap-2 md:gap-4'>
-            { isLogin ?
+            { user ?
                 <>
                     <DropdownMenu>
                         <DropdownMenuTrigger className='cursor-pointer'>
                             <Image src='/assets/profile.png' alt='' width={ 20 } height={ 20 } className='cursor-pointer' />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className='p-0'>
-                            <DropdownMenuLabel className='cursor-pointer hover:bg-gray-400 p-2'>
-                                <Link href='/'>Profile</Link>
+                            <DropdownMenuLabel>
+                                <span>{ user.email }</span>
                             </DropdownMenuLabel>
                             <DropdownMenuSeparator className='mx-1' />
-                            <DropdownMenuLabel className='cursor-pointer hover:bg-gray-400'>Logout</DropdownMenuLabel>
+                            <DropdownMenuLabel className='cursor-pointer hover:bg-gray-400' onClick={ () => handleSignOut() }>Logout</DropdownMenuLabel>
                         </DropdownMenuContent>
                     </DropdownMenu>
 
@@ -46,7 +61,7 @@ export default function NavIcons() {
                         <CartModel />
                     </DropdownMenu>
                 </>
-                : <Button className='bg-primary cursor-pointer' onClick={ () => router.push('/login') }>Login</Button> }
+                : <Button className='bg-primary cursor-pointer' onClick={ () => router.push('/register') }>Login</Button> }
 
         </div>
     )

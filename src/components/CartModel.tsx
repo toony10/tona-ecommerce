@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import { Button } from './ui/button'
 import { useRouter } from 'next/navigation'
@@ -12,8 +13,6 @@ export default function CartModel() {
     return (
         <DropdownMenuContent className='p-0  m-5 w-72'>
             <div className='p-2 text-xl font-bold text-center'>Shopping Cart</div>
-
-
             {/* ITEM */ }
             <div className='flex w-full items-center gap-5 p-2 '>
                 <div className='w-1/3'>
