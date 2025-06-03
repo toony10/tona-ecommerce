@@ -13,7 +13,7 @@ async function signInWithMagicLink(prev: unknown, formData: FormData): Promise<A
   const { error } = await supabase.auth.signInWithOtp({
     email,
     options: {
-      emailRedirectTo: 'http://localhost:3000',
+      emailRedirectTo: process.env.SITE_URL,
       shouldCreateUser: false,
     },
   });
@@ -40,7 +40,7 @@ async function signUpWithEmail(prev: unknown, formData: FormData): Promise<Actio
     email,
     password,
     options: {
-      emailRedirectTo: 'http://localhost:3000',
+      emailRedirectTo: process.env.SITE_URL,
     },
   });
 
