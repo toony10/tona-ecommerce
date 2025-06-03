@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import React, { Dispatch, SetStateAction, useState } from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { IoClose } from 'react-icons/io5'
 
 export const successMsg = '#34D399'

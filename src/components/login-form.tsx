@@ -108,7 +108,7 @@ export function LoginForm({
           { forgotPassword ?
             <div className="text-center flex flex-col">
               <div className="font-semibold">
-                don't worry, you can sign in with magic link.
+                don&apos;t worry, you can sign in with magic link.
                 <span className="font-extrabold">just enter your email above!</span>
               </div>
               <button type="button" className="mt-5 hover:underline underline-offset-4 cursor-pointer" onClick={ () => setForgotPassword(prev => !prev) }>⬅ Back to normal sgin in</button>
