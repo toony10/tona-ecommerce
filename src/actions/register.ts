@@ -1,16 +1,12 @@
-// signInWithMagicLink.ts
 'use server';
-
-import { redirect } from 'next/navigation';
 import { supabaseServer } from '../utils/supabase/SB-server';
-import { revalidatePath } from 'next/cache';
 
 interface ActionResult {
   status: 'success' | 'error';
   message: string;
 }
 
-async function signInWithMagicLink(_: any, formData: FormData): Promise<ActionResult> {
+async function signInWithMagicLink(prev: unknown, formData: FormData): Promise<ActionResult> {
   const supabase = await supabaseServer();
   const email = formData.get('email') as string;
 
@@ -35,7 +31,7 @@ async function signInWithMagicLink(_: any, formData: FormData): Promise<ActionRe
   };
 }
 
-async function signUpWithEmail(_: any, formData: FormData): Promise<ActionResult> {
+async function signUpWithEmail(prev: unknown, formData: FormData): Promise<ActionResult> {
   const supabase = await supabaseServer();
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
@@ -61,7 +57,7 @@ async function signUpWithEmail(_: any, formData: FormData): Promise<ActionResult
   };
 }
 
-async function signInWithEmail(_: any, formData: FormData): Promise<ActionResult> {
+async function signInWithEmail(prev: unknown, formData: FormData): Promise<ActionResult> {
   const supabase = await supabaseServer();
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;

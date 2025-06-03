@@ -1,6 +1,5 @@
 'use client'
 import Image from 'next/image'
-import Link from 'next/link'
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -17,7 +16,7 @@ import { useRouter } from 'next/navigation'
 export default function NavIcons() {
 
     const router = useRouter();
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState(null);
 
     const handleSignOut = async () => {
         await supabaseClient.auth.signOut();
