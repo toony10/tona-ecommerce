@@ -22,7 +22,6 @@ export function LoginForm({
   const [signUpState, signUpAction, signUpIsPending] = useActionState(signUpWithEmail, null)
   const [signInState, signInAction, signInIsPending] = useActionState(signInWithEmail, null)
   const [MLState, MLAction, MLIsPending] = useActionState(signInWithMagicLink, null)
-  // const [googleState, googleAction, googleIsPending] = useActionState(signInWithGoogle, null)
 
   function selectAction() {
     if (forgotPassword) {
@@ -33,6 +32,11 @@ export function LoginForm({
       return signUpAction
     }
   }
+
+  useEffect(() => {
+    setPending(signUpIsPending || signInIsPending || MLIsPending);
+  }, [signUpIsPending, signInIsPending, MLIsPending]);
+
 
   useEffect(() => {
     if (signUpState) {
