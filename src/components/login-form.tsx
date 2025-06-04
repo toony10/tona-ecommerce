@@ -7,6 +7,7 @@ import { useActionState, useEffect, useState } from "react"
 import { FcGoogle } from "react-icons/fc";
 import { signUpWithEmail, signInWithEmail, signInWithMagicLink } from "@/actions/register"
 import Aleart, { successMsg, failedMsg } from "./Shared/Aleart"
+import { supabaseClient } from "@/utils/supabase/SB-client"
 
 export function LoginForm({
   className = "",
@@ -21,6 +22,7 @@ export function LoginForm({
   const [signUpState, signUpAction, signUpIsPending] = useActionState(signUpWithEmail, null)
   const [signInState, signInAction, signInIsPending] = useActionState(signInWithEmail, null)
   const [MLState, MLAction, MLIsPending] = useActionState(signInWithMagicLink, null)
+  // const [googleState, googleAction, googleIsPending] = useActionState(signInWithGoogle, null)
 
   function selectAction() {
     if (forgotPassword) {
@@ -31,10 +33,6 @@ export function LoginForm({
       return signUpAction
     }
   }
-
-  useEffect(() => {
-    setPending(signUpIsPending || signInIsPending || MLIsPending)
-  }, [signUpIsPending, signInIsPending, MLIsPending])
 
   useEffect(() => {
     if (signUpState) {
@@ -58,6 +56,21 @@ export function LoginForm({
       return () => clearTimeout(timer);
     }
   }, [signInState]);
+
+
+  //OAuth
+  async function handleOAuth() {
+    const redirectUrl = process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000/auth/callback'
+      : `${ process.env.NEXT_PUBLIC_SITE_URL }/auth/callback`;
+
+    const response = await supabaseClient.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: redirectUrl
+      }
+    })
+  }
 
   return (
     <div>
@@ -133,13 +146,13 @@ export function LoginForm({
         </div>
       </form>
 
-      <form className="flex flex-col gap-3 mt-5">
+      <form className="flex flex-col gap-3 mt-5" onSubmit={ handleOAuth }>
         <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
           <span className="bg-background text-muted-foreground relative z-10 px-2">
             OR
           </span>
         </div>
-        <Button variant="outline" className="w-full cursor-pointer">
+        <Button type='submit' variant="outline" className="w-full cursor-pointer" >
           <FcGoogle />
           continue with Google
         </Button>

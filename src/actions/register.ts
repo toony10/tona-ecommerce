@@ -80,4 +80,26 @@ async function signInWithEmail(prev: unknown, formData: FormData): Promise<Actio
   };
 }
 
-export { signUpWithEmail, signInWithEmail, signInWithMagicLink };
+async function signInWithGoogle(): Promise<ActionResult> {
+  const supabase = await supabaseServer();
+
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: 'http://localhost:3000',
+    },
+  });
+
+  if (error) {
+    return {
+      status: 'error',
+      message: error.message || 'Google sign-in failed',
+    };
+  }
+
+  return {
+    status: 'success',
+    message: 'Redirecting to Google sign-in...',
+  };
+}
+export { signUpWithEmail, signInWithEmail, signInWithMagicLink, signInWithGoogle };
