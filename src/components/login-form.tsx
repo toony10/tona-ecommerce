@@ -65,14 +65,10 @@ export function LoginForm({
   //OAuth
   async function handleOAuth() {
     try {
-      const redirectUrl = process.env.NODE_ENV === 'development'
-        ? 'http://localhost:3000/auth/callback'
-        : `${ process.env.NEXT_PUBLIC_SITE_URL }/auth/callback`;
-
       const response = await supabaseClient.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: redirectUrl
+          redirectTo: `${ process.env.NEXT_PUBLIC_SITE_URL }/auth/callback`
         }
       })
 
