@@ -64,16 +64,29 @@ export function LoginForm({
 
   //OAuth
   async function handleOAuth() {
-    const redirectUrl = process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000/auth/callback'
-      : `${ process.env.NEXT_PUBLIC_SITE_URL }/auth/callback`;
+    try {
+      const redirectUrl = process.env.NODE_ENV === 'development'
+        ? 'http://localhost:3000/auth/callback'
+        : `${ process.env.NEXT_PUBLIC_SITE_URL }/auth/callback`;
 
-    const response = await supabaseClient.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: redirectUrl
+      const response = await supabaseClient.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: redirectUrl
+        }
+      })
+
+      if (response.error) {
+        console.error('OAuth error:', response.error.message);
+        // You might want to show an error message to the user here
       }
-    })
+
+      return response;
+    } catch (error) {
+      console.error('OAuth error:', error);
+      // You might want to show an error message to the user here
+      throw error;
+    }
   }
 
   return (
