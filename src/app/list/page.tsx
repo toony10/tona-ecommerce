@@ -1,10 +1,13 @@
 import Filters from "@/components/Filters"
-import ProductsList from "@/components/ui/ProductsList"
+import ProductsList from "@/components/Shared/ProductsList"
 import Heading from "@/components/Shared/Heading"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { supabaseServer } from "@/utils/supabase/SB-server";
 
-export default function List() {
+export default async function List() {
+    const supabase = await supabaseServer();
+    const { data: products } = await supabase.from('products').select('*').limit(4);
     return (
         <div className='px-10 md:px-24 relative'>
             {/* CAMOING */ }
@@ -30,10 +33,10 @@ export default function List() {
             <div className="mt-16">
                 <Heading text="Shose for you!" />
                 <div className="flex flex-col gap-10 items-center md:items-stretch">
-                    <ProductsList />
-                    <ProductsList />
-                    <ProductsList />
-                    <ProductsList />
+                    {
+                        products &&
+                        <ProductsList products={ products } />
+                    }
                 </div>
             </div>
         </div>

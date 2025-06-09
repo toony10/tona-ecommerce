@@ -8,7 +8,7 @@ import { Button } from './ui/button'
 
 export default function Footer() {
     return (
-        <div className='p-10 md:p-24 bg-gray-200'>
+        <div className='p-10 md:p-24 mt-5 bg-gray-200'>
             {/* TOP */ }
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-20'>
                 {/* COL */ }
