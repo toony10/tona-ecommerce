@@ -3,6 +3,8 @@ import CustomizeProducts from '@/components/CustomizeProducts'
 import ProductGalary from '@/components/Shared/ProductGalary'
 import React from 'react'
 import { supabaseClient } from '@/utils/supabase/SB-client';
+import { Product } from '@/types';
+import { PostgrestError } from '@supabase/supabase-js';
 
 interface Props {
     params: { id: string };
@@ -11,12 +13,16 @@ interface Props {
 export default async function ProductPage({ params }: Props) {
     const { id } = params;
 
-    const { data: product, error } = await supabaseClient
-        .from('products')
-        .select('*')
-        .eq('id', id)
-        .single();
+    const { data: product, error }: { data: Product | null; error: PostgrestError | null } =
+        await supabaseClient
+            .from('products')
+            .select('*')
+            .eq('id', id)
+            .single();
 
+    if (error) {
+        return <div>{ error.message }</div>
+    }
     return (
         <div className='CustomeContainer flex flex-col lg:flex-row justify-between gap-10'>
             {/* IMG */ }

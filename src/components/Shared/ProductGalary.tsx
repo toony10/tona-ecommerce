@@ -2,25 +2,6 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { Product } from '@/types'
-const images = [
-    {
-        id: 0,
-        url: 'https://images.pexels.com/photos/30890360/pexels-photo-30890360/free-photo-of-vintage-orange-car-on-paris-street-at-dusk.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-    },
-    {
-        id: 1,
-        url: 'https://images.pexels.com/photos/28535732/pexels-photo-28535732/free-photo-of-healthy-breakfast-with-berries-and-coffee.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-    },
-    {
-        id: 2,
-        url: 'https://images.pexels.com/photos/29137863/pexels-photo-29137863/free-photo-of-vibrant-crepe-myrtle-blossoms-in-ludhiana-garden.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-    },
-    {
-        id: 3,
-        url: 'https://images.pexels.com/photos/7878199/pexels-photo-7878199.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-    }
-
-]
 
 type ProductGalleryProps = {
     images: Product['images'];
