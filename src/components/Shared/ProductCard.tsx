@@ -6,7 +6,7 @@ import { Product } from '@/types'
 export default function ProductCard(product: Product) {
     return (
         <div className="w-full flex flex-col">
-            <Link href='/test'>
+            <Link href={ `/product/${ product.id }` } className="relative w-full h-72 mb-4">
                 <div className="relative overflow-hidden w-full h-72 mb-4 rounded-sm">
                     <Image src={ product.images?.[0] ?? './assets/fallback-image.png' } fill alt="product" className="absolute z-10 hover:opacity-0 transition-all duration-[600ms] object-cover" />
                     <Image src={ product.images?.[1] ?? './assets/fallback-image.png' } fill sizes="100vh" alt="product" className='object-cover' />
