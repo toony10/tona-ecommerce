@@ -53,7 +53,7 @@ export default async function ProductPage({ params }: { params: Params }) {
 
                 <div className='h-[2px] bg-gray-200' />
                 <CustomizeProducts />
-                <Add />
+                <Add stok={ product?.stock ?? null } />
                 <div className='h-[2px] bg-gray-200' />
             </div>
         </div>

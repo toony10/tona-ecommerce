@@ -4,14 +4,16 @@ import { Button } from './ui/button'
 import { AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from './ui/alert-dialog';
 import Logo from './Shared/Logo';
 
+interface Props {
+    stok: number | null;
+}
 
-export default function Add() {
+export default function Add({ stok }: Props) {
     const [Qty, setQty] = useState(1);
-    const stok = 10;
     const [aleart, setAleart] = useState(false);
 
     const increase = () => {
-        if (Qty < stok) {
+        if (Qty < (stok ?? 0)) {
             setQty((prev) => prev + 1)
         } else {
             setAleart(!aleart)
@@ -32,7 +34,7 @@ export default function Add() {
                         <span className='cursor-pointer' onClick={ decrease }>-</span>
                         <span>{ Qty }</span>
                         {
-                            Qty < stok ?
+                            Qty < (stok ?? 0) ?
                                 <span className='cursor-pointer' onClick={ increase }>+</span>
                                 :
                                 <AlertDialog>
@@ -56,7 +58,7 @@ export default function Add() {
 
 
                     </div>
-                    { stok <= 10 && <p className='w-1/2'>Only <span className='text-orange-400 text-center mr-0.5'>{ stok } Items</span>left <br /> Don&apos;t miss it!</p> }
+                    { stok !== null && stok <= 10 && <p className='w-1/2'>Only <span className='text-orange-400 text-center mr-0.5'>{ stok } Items</span>left <br /> Don&apos;t miss it!</p> }
                 </div>
                 <div className=''>
                     <Button className="w-24 px-12 rounded-full border-[1px] font-semibold border-[#E63946] text-[#E63946] cursor-pointer hover:bg-[#E63946] hover:text-white transition-all duration-300">Add To Cart</Button>
