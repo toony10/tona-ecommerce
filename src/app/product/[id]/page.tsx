@@ -5,9 +5,11 @@ import React from 'react'
 import { supabaseClient } from '@/utils/supabase/SB-client';
 import { Product } from '@/types';
 import { PostgrestError } from '@supabase/supabase-js';
+type Params = Promise<{ id: string }>
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
-    const { id } = params
+
+export default async function ProductPage({ params }: { params: Params }) {
+    const { id } = await params
     const { data: product, error }: { data: Product | null; error: PostgrestError | null } =
         await supabaseClient
             .from('products')
