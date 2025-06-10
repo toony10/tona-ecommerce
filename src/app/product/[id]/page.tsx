@@ -6,13 +6,8 @@ import { supabaseClient } from '@/utils/supabase/SB-client';
 import { Product } from '@/types';
 import { PostgrestError } from '@supabase/supabase-js';
 
-interface Props {
-    params: { id: string };
-}
-
-export default async function ProductPage({ params }: Props) {
-    const { id } = params;
-
+export default async function ProductPage({ params }: { params: { id: string } }) {
+    const { id } = params
     const { data: product, error }: { data: Product | null; error: PostgrestError | null } =
         await supabaseClient
             .from('products')
