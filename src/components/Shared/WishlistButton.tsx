@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react'
 interface WishListBtnProps {
     id: string;
 }
-export default function WishListBtn({ id }: WishListBtnProps) {
+export default function WishlistButton({ id }: WishListBtnProps) {
     const [isWishlisted, setIsWishlisted] = useState<boolean>(false)
     const [loadingWishlistCheck, setLoadingWishlistCheck] = useState(true);
 
