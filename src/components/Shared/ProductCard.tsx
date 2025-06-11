@@ -49,6 +49,11 @@ export default function ProductCard(product: Product) {
         <div className="w-full flex flex-col">
             <Link href={ `/products/${ product.id }` } className="relative w-full h-72 mb-4">
                 <div className="relative overflow-hidden w-full h-72 mb-4 rounded-sm">
+                    { product.discount_percentage && product.discount_percentage > 0 && (
+                        <div className="absolute top-2 left-2 z-20 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+                            { product.discount_percentage }% OFF
+                        </div>
+                    ) }
                     <Image src={ product.images?.[0] ?? './assets/fallback-image.png' } fill alt="product" className="absolute z-10 hover:opacity-0 transition-all duration-[600ms] object-cover" />
                     <Image src={ product.images?.[1] ?? './assets/fallback-image.png' } fill sizes="100vh" alt="product" className='object-cover' />
                 </div>
