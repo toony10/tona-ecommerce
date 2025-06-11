@@ -5,6 +5,7 @@ import React from 'react'
 import { supabaseClient } from '@/utils/supabase/SB-client';
 import { Product } from '@/types';
 import { PostgrestError } from '@supabase/supabase-js';
+import WishListBtn from '@/components/Shared/wishListBtn';
 type Params = Promise<{ id: string }>
 
 
@@ -28,7 +29,10 @@ export default async function ProductPage({ params }: { params: Params }) {
             </div>
             {/* TXT */ }
             <div className='w-full lg:w-1/2'>
-                <h1 className='text-4xl font-medium'>{ product?.title }</h1>
+                <div className='flex gap-2'>
+                    <h1 className='text-4xl font-medium'>{ product?.title }</h1>
+                    { product?.id && <WishListBtn id={ product.id } /> }
+                </div>
                 <p className='text-gray-500 my-7'>{ product?.description }
                 </p>
                 <div className='h-[2px] bg-gray-200' />
