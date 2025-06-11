@@ -5,18 +5,19 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { getFilteredProducts } from "@/actions/products"
 
-interface PageProps {
-    searchParams: {
-        [key: string]: string | string[] | undefined
-    }
+type SearchParams = {
+    minPrice?: string;
+    maxPrice?: string;
+    category?: string;
+    search?: string;
 }
 
-export default async function ProductsPage({ searchParams }: PageProps) {
-    const { products, error } = await getFilteredProducts({
-        minPrice: searchParams.minPrice as string,
-        maxPrice: searchParams.maxPrice as string,
-        category: searchParams.category as string,
-    });
+export default async function ProductsPage({
+    searchParams,
+}: {
+    searchParams: SearchParams;
+}) {
+    const { products, error } = await getFilteredProducts(searchParams);
 
     return (
         <div className='px-10 md:px-24 relative'>

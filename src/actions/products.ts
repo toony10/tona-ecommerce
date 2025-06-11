@@ -5,10 +5,12 @@ export async function getFilteredProducts({
   minPrice,
   maxPrice,
   category,
+  search,
 }: {
   minPrice?: string;
   maxPrice?: string;
   category?: string;
+  search?: string;
 }) {
   const supabase = await supabaseServer();
   let query = supabase.from('products').select('*');
@@ -34,6 +36,10 @@ export async function getFilteredProducts({
       // لو الكاتيجوري مش موجود، رجع نتائج فاضية
       return { products: [], error: null };
     }
+  }
+
+  if (search) {
+    query = query.ilike('title', `%${search}%`);
   }
 
   const { data, error } = await query;
