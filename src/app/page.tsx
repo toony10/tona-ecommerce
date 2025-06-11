@@ -4,7 +4,7 @@ import ProductsList from "@/components/Shared/ProductsList";
 import Slider from "@/components/Slider";
 import { supabaseServer } from "@/utils/supabase/SB-server";
 import Link from "next/link";
-import { ArrowBigRight, MoveRight } from "lucide-react";
+import { MoveRight } from "lucide-react";
 export default async function Home() {
   const supabase = await supabaseServer();
 
