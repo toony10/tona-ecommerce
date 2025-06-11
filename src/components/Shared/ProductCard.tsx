@@ -1,12 +1,48 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '../ui/button'
 import { Product } from '@/types'
-
+import { Heart } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { addToWishlist, removeFromWishlist } from '@/utils/wish-list'
+import { supabaseClient } from '@/utils/supabase/SB-client'
 export default function ProductCard(product: Product) {
+    const [isWishlisted, setIsWishlisted] = useState<boolean>(false)
+
+    const supabase = supabaseClient;
+    useEffect(() => {
+        const checkWishlist = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) return;
+
+            const { data, error } = await supabase
+                .from('wishlist')
+                .select('id')
+                .eq('user_id', user.id)
+                .eq('product_id', product.id)
+                .single();
+
+            if (data) {
+                setIsWishlisted(true);
+            }
+        };
+
+        checkWishlist();
+    }, [product.id]);
+
+    const handleWish = async () => {
+        if (isWishlisted) {
+            await removeFromWishlist(product.id)
+            setIsWishlisted(false)
+        } else {
+            await addToWishlist(product.id)
+            setIsWishlisted(true)
+        }
+    }
     return (
         <div className="w-full flex flex-col">
-            <Link href={ `/product/${ product.id }` } className="relative w-full h-72 mb-4">
+            <Link href={ `/products/${ product.id }` } className="relative w-full h-72 mb-4">
                 <div className="relative overflow-hidden w-full h-72 mb-4 rounded-sm">
                     <Image src={ product.images?.[0] ?? './assets/fallback-image.png' } fill alt="product" className="absolute z-10 hover:opacity-0 transition-all duration-[600ms] object-cover" />
                     <Image src={ product.images?.[1] ?? './assets/fallback-image.png' } fill sizes="100vh" alt="product" className='object-cover' />
@@ -37,7 +73,11 @@ export default function ProductCard(product: Product) {
                     }
                 </div>
                 <p className=" text-gray-600 line-clamp-2">{ product.description }</p>
-                <Button className="w-24 px-12 rounded-full border-[1px] font-semibold border-[#E63946] text-[#E63946] cursor-pointer hover:bg-[#E63946] hover:text-white transition-all duration-300">Add To Cart</Button>
+                <div className='flex items-center justify-between pt-2'>
+                    <Button className="w-24 px-12 rounded-full border-[1px] font-semibold border-[#E63946] text-[#E63946] cursor-pointer hover:bg-[#E63946] hover:text-white transition-all duration-300">Add To Cart</Button>
+                    <Heart className={ `cursor-pointer transition duration-300 ${ isWishlisted ? 'fill-red-500 text-white' : ''
+                        }` } onClick={ () => handleWish() } />
+                </div>
             </div>
         </div>
     )
