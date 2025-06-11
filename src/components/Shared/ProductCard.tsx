@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '../ui/button'
 import { Product } from '@/types'
+import WishListBtn from './wishListBtn'
 
 export default function ProductCard(product: Product) {
     return (
@@ -45,6 +46,7 @@ export default function ProductCard(product: Product) {
                 <div className='flex items-center justify-between pt-2'>
                     <Button className="w-24 px-12 rounded-full border-[1px] font-semibold border-[#E63946] text-[#E63946] cursor-pointer hover:bg-[#E63946] hover:text-white transition-all duration-300">Add To Cart
                     </Button>
+                    <WishListBtn id={ product.id } />
                 </div>
             </div>
         </div>
