@@ -13,6 +13,7 @@ import { supabaseClient } from '@/utils/supabase/SB-client'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { User } from '@supabase/supabase-js'
+import Link from 'next/link'
 
 export default function NavIcons() {
 
@@ -46,6 +47,9 @@ export default function NavIcons() {
                                 <span>{ user.email }</span>
                             </DropdownMenuLabel>
                             <DropdownMenuSeparator className='mx-1' />
+                            <Link href={ '/wishlist' } >
+                                <DropdownMenuLabel className='cursor-pointer hover:bg-gray-400'>Wish List</DropdownMenuLabel>
+                            </Link>
                             <DropdownMenuLabel className='cursor-pointer hover:bg-gray-400' onClick={ () => handleSignOut() }>Logout</DropdownMenuLabel>
                         </DropdownMenuContent>
                     </DropdownMenu>
