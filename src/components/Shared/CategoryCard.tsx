@@ -10,7 +10,7 @@ export default function CategoryCard(category: Category) {
                     src={ category.image ?? './assets/fallback-image.png' }
                     alt="category"
                     fill
-                    sizes="20vw"
+                    sizes="100vw"
                     className="object-cover rounded-xs transition-transform duration-300 ease-in-out hover:scale-125"
                 />
             </div>

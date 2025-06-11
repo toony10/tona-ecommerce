@@ -41,14 +41,16 @@ export default async function ProductPage({ params }: { params: Params }) {
                     ?
                     <div className='my-5 flex text-center gap-4'>
                         <div>
+                            <h2 className='text-3xl font-medium text-gray-800'>
+                                ${ product && product.discount_percentage
+                                    ? (product.price * (1 - product.discount_percentage / 100)).toFixed(2)
+                                    : '' }
+                            </h2>
                             <h3 className='text-xl text-gray-500 line-through'>${ product.price }</h3>
-                            <span className='text-green-700 text-sm'>{ product.discount_percentage }%</span>
                         </div>
-                        <h2 className='text-2xl font-medium'>
-                            ${ product && product.discount_percentage
-                                ? (product.price * (1 - product.discount_percentage / 100)).toFixed(2)
-                                : '' }
-                        </h2>
+                        <div className='flex items-center'>
+                            <span className='text-green-600 text-xl font-bold'>{ product.discount_percentage }% <br /> OFF</span>
+                        </div>
                     </div>
                     :
                     <div className='my-5 flex text-center gap-4'>
