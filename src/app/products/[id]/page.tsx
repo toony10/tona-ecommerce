@@ -6,6 +6,7 @@ import { supabaseClient } from '@/utils/supabase/SB-client';
 import { Product } from '@/types';
 import { PostgrestError } from '@supabase/supabase-js';
 import WishListBtn from '@/components/Shared/WishListBtn';
+
 type Params = Promise<{ id: string }>
 
 

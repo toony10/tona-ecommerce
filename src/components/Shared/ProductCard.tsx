@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '../ui/button'
 import { Product } from '@/types'
-import WishListBtn from './WishListBtn'
+import WishListBtn from '@/components/Shared/WishListBtn';
 
 export default function ProductCard(product: Product) {
     return (
