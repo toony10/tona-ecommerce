@@ -1,3 +1,4 @@
+import { redirect } from 'next/navigation';
 import { supabaseClient } from './supabase/SB-client';
 
 export async function addToWishlist(productId: string) {
@@ -7,8 +8,7 @@ export async function addToWishlist(productId: string) {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    alert('Please log in to use the wishlist.');
-    return;
+    redirect('/register');
   }
 
   await supabase.from('wishlist').insert({

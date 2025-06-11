@@ -9,14 +9,18 @@ import { addToWishlist, removeFromWishlist } from '@/utils/wish-list'
 import { supabaseClient } from '@/utils/supabase/SB-client'
 export default function ProductCard(product: Product) {
     const [isWishlisted, setIsWishlisted] = useState<boolean>(false)
+    const [loadingWishlistCheck, setLoadingWishlistCheck] = useState(true);
 
     const supabase = supabaseClient;
     useEffect(() => {
         const checkWishlist = async () => {
             const { data: { user } } = await supabase.auth.getUser();
-            if (!user) return;
+            if (!user) {
+                setLoadingWishlistCheck(false);
+                return;
+            };
 
-            const { data, error } = await supabase
+            const { data } = await supabase
                 .from('wishlist')
                 .select('id')
                 .eq('user_id', user.id)
@@ -26,6 +30,7 @@ export default function ProductCard(product: Product) {
             if (data) {
                 setIsWishlisted(true);
             }
+            setLoadingWishlistCheck(false);
         };
 
         checkWishlist();
@@ -73,10 +78,13 @@ export default function ProductCard(product: Product) {
                     }
                 </div>
                 <p className=" text-gray-600 line-clamp-2">{ product.description }</p>
-                <div className='flex items-center justify-between pt-2'>
-                    <Button className="w-24 px-12 rounded-full border-[1px] font-semibold border-[#E63946] text-[#E63946] cursor-pointer hover:bg-[#E63946] hover:text-white transition-all duration-300">Add To Cart</Button>
-                    <Heart className={ `cursor-pointer transition duration-300 ${ isWishlisted ? 'fill-red-500 text-white' : ''
-                        }` } onClick={ () => handleWish() } />
+                <div className={ `flex items-center justify-between pt-2  ${ loadingWishlistCheck ? 'opacity-15' : 'opacity-100' }` }>
+                    <Button className="w-24 px-12 rounded-full border-[1px] font-semibold border-[#E63946] text-[#E63946] cursor-pointer hover:bg-[#E63946] hover:text-white transition-all duration-300">Add To Cart
+                    </Button>
+                    <button disabled={ loadingWishlistCheck }>
+                        <Heart className={ `cursor-pointer transition duration-300 ${ isWishlisted ? 'fill-red-500 text-white' : ''
+                            }` } onClick={ () => handleWish() } />
+                    </button>
                 </div>
             </div>
         </div>
