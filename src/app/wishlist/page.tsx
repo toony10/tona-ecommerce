@@ -17,6 +17,11 @@ export default async function WishlistPage() {
         .select("product_id")
         .eq("user_id", user.id);
 
+    if (wishlistError) {
+        console.error("Error fetching wishlist:", wishlistError);
+        return <div className="px-10 py-20 text-center">Error loading wishlist.</div>;
+    }
+
     const productIds = wishlistItems?.map(item => item.product_id) || [];
 
     if (productIds.length === 0) {
@@ -32,6 +37,11 @@ export default async function WishlistPage() {
         .from("products")
         .select("*")
         .in("id", productIds);
+
+    if (productsError) {
+        console.error("Error fetching products for wishlist:", productsError);
+        return <div className="px-10 py-20 text-center">Error loading wishlist products.</div>;
+    }
 
     return (
         <div className="px-10 py-20">
