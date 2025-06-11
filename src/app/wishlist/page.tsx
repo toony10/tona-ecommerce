@@ -2,6 +2,7 @@ import { supabaseServer } from "@/utils/supabase/SB-server";
 import ProductsList from "@/components/Shared/ProductsList";
 import Heading from "@/components/Shared/Heading";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default async function WishlistPage() {
     const supabase = await supabaseServer();
@@ -29,6 +30,9 @@ export default async function WishlistPage() {
             <div className="px-10 py-20 text-center">
                 <Heading text="Your Wishlist" />
                 <p className="text-gray-500 mt-4">You have no items in your wishlist.</p>
+                <Link href="/products" className="text-blue-500 hover:underline mt-4">
+                    Browse Products
+                </Link>
             </div>
         );
     }

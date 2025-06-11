@@ -3,14 +3,22 @@ import ProductsList from "@/components/Shared/ProductsList"
 import Heading from "@/components/Shared/Heading"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import { supabaseServer } from "@/utils/supabase/SB-server";
+import { getFilteredProducts } from "@/actions/products"
 
-export default async function List() {
-    const supabase = await supabaseServer();
-    const { data: products } = await supabase.from('products').select('*').limit(4);
+export default async function List({
+    searchParams,
+}: {
+    searchParams: { [key: string]: string | string[] | undefined }
+}) {
+    const { products, error } = await getFilteredProducts({
+        minPrice: searchParams.minPrice as string,
+        maxPrice: searchParams.maxPrice as string,
+        category: searchParams.category as string,
+    });
+
     return (
         <div className='px-10 md:px-24 relative'>
-            {/* CAMOING */ }
+            {/* CAMPAIGN */ }
             <div className="hidden bg-pink-50 px-4 sm:flex justify-between h-80">
                 <div className="w-2/3 flex flex-col items-center justify-center gap-8">
                     <h1 className="text-4xl font-semibold leading-[48px] text-gray-700">
@@ -31,12 +39,13 @@ export default async function List() {
 
             {/* PRODUCTS */ }
             <div className="mt-16">
-                <Heading text="Shose for you!" />
+                <Heading text="Discover Your Next Favorite Pair!" />
                 <div className="flex flex-col gap-10 items-center md:items-stretch">
-                    {
-                        products &&
+                    { error ? (
+                        <p className="text-red-500 text-center">Error loading products: { error }</p>
+                    ) : (
                         <ProductsList products={ products } />
-                    }
+                    ) }
                 </div>
             </div>
         </div>

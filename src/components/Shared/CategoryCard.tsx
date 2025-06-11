@@ -4,7 +4,7 @@ import { Category } from '@/types'
 
 export default function CategoryCard(category: Category) {
     return (
-        <Link href={ `/list?cat=${ category.name.toLowerCase() }` } className='shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6'>
+        <Link href={ `/products?category=${ category.name }` } className='shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6'>
             <div className="relative bg-slate-100 w-full h-96 overflow-hidden">
                 <Image
                     src={ category.image ?? './assets/fallback-image.png' }
