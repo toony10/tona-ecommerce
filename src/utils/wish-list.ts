@@ -37,6 +37,10 @@ export async function getWishlist() {
   if (!user) return [];
 
   const { data, error } = await supabase.from('wishlist').select('product_id');
+  if (error) {
+    console.error('Error fetching wishlist:', error);
+    return [];
+  }
 
   return data?.map((item) => item.product_id) ?? [];
 }

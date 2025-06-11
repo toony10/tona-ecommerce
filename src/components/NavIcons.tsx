@@ -22,6 +22,7 @@ export default function NavIcons() {
     const handleSignOut = async () => {
         await supabaseClient.auth.signOut();
         setUser(null);
+        router.refresh();
     };
 
     useEffect(() => {
