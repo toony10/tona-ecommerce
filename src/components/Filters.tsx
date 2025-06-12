@@ -57,16 +57,16 @@ export default function Filters() {
         <div className="mt-10 flex flex-col md:flex-row justify-between items-center gap-10">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 justify-between items-center gap-3">
                 <Input
-                    placeholder="min price"
-                    className="w-32 rounded-full"
+                    placeholder="min price (after discount)"
+                    className="w-40 rounded-full"
                     type="number"
                     min="0"
                     value={ priceState.minPrice }
                     onChange={ (e) => handlePriceChange('minPrice', e.target.value) }
                 />
                 <Input
-                    placeholder="max price"
-                    className="w-32 rounded-full"
+                    placeholder="max price (after discount)"
+                    className="w-40 rounded-full"
                     type="number"
                     min="0"
                     value={ priceState.maxPrice }

@@ -1,6 +1,12 @@
 'use server';
 
 import { supabaseServer } from '../utils/supabase/SB-server';
+
+function calculateDiscountedPrice(price: number, discountPercentage: number | null): number {
+  if (!discountPercentage) return price;
+  return price * (1 - discountPercentage / 100);
+}
+
 export async function getFilteredProducts({
   minPrice,
   maxPrice,
@@ -13,15 +19,7 @@ export async function getFilteredProducts({
   search?: string;
 }) {
   const supabase = await supabaseServer();
-  let query = supabase.from('products').select('*');
-
-  if (minPrice) {
-    query = query.gte('price', parseFloat(minPrice));
-  }
-
-  if (maxPrice) {
-    query = query.lte('price', parseFloat(maxPrice));
-  }
+  let query = supabase.from('products').select('*, discount_percentage');
 
   if (category) {
     const { data: categoryData } = await supabase
@@ -44,5 +42,28 @@ export async function getFilteredProducts({
 
   const { data, error } = await query;
 
-  return { products: data || [], error: error?.message };
+  if (error) {
+    return { products: [], error: error.message };
+  }
+
+  // Filter products based on discounted prices
+  let filteredProducts = data || [];
+
+  if (minPrice) {
+    const minPriceNum = parseFloat(minPrice);
+    filteredProducts = filteredProducts.filter(
+      (product) =>
+        calculateDiscountedPrice(product.price, product.discount_percentage) >= minPriceNum,
+    );
+  }
+
+  if (maxPrice) {
+    const maxPriceNum = parseFloat(maxPrice);
+    filteredProducts = filteredProducts.filter(
+      (product) =>
+        calculateDiscountedPrice(product.price, product.discount_percentage) <= maxPriceNum,
+    );
+  }
+
+  return { products: filteredProducts, error: null };
 }
