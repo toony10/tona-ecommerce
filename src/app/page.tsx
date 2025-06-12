@@ -8,7 +8,11 @@ import { MoveRight } from "lucide-react";
 export default async function Home() {
   const supabase = await supabaseServer();
 
-  const { data: products } = await supabase.from('products').select('*').limit(4);
+  const { data: products } = await supabase
+    .from('products')
+    .select('*')
+    .order('sold_count', { ascending: false })
+    .limit(4);
   const { data: categories } = await supabase.from('categories').select('*');
   return (
     <div>
@@ -23,7 +27,7 @@ export default async function Home() {
       <div className="flex justify-end px-10 md:px-24 mt-4">
         <Link
           href="/products"
-          className="text-gray-800 border-[1px] p-3 rounded-sm border-gray-700 text-sm font-semibold transition-colors duration-200 hover:bg-gray-700 hover:text-white m-auto md:m-0"
+          className="text-primary border-[1px] p-3 rounded-sm border-primary text-sm font-semibold transition-colors duration-200 hover:bg-primary hover:text-white m-auto md:m-0"
         >
           Show All Products
           <MoveRight className="inline ml-2" />

@@ -44,7 +44,7 @@ export default function ProductCard(product: Product) {
                 </div>
                 <p className=" text-gray-600 line-clamp-2">{ product.description }</p>
                 <div className='flex items-center justify-between pt-2'>
-                    <Button className="w-24 px-12 rounded-full border-[1px] font-semibold border-[#E63946] text-[#E63946] cursor-pointer hover:bg-[#E63946] hover:text-white transition-all duration-300">Add To Cart
+                    <Button className="w-24 px-12 rounded-full border-[1px] font-semibold border-primary text-primary cursor-pointer hover:bg-primary hover:text-white transition-all duration-300">Add To Cart
                     </Button>
                     <WishlistButton id={ product.id } />
                 </div>

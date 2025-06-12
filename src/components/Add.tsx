@@ -61,7 +61,7 @@ export default function Add({ stok }: Props) {
                     { stok !== null && stok <= 10 && <p className='w-1/2'>Only <span className='text-orange-400 text-center mr-0.5'>{ stok } Items</span>left <br /> Don&apos;t miss it!</p> }
                 </div>
                 <div className=''>
-                    <Button className="w-24 px-12 rounded-full border-[1px] font-semibold border-[#E63946] text-[#E63946] cursor-pointer hover:bg-[#E63946] hover:text-white transition-all duration-300">Add To Cart</Button>
+                    <Button className="w-24 px-12 rounded-full border-[1px] font-semibold border-primary text-primary cursor-pointer hover:bg-primary hover:text-white transition-all duration-300">Add To Cart</Button>
                 </div>
             </div>
         </div>

@@ -57,7 +57,7 @@ export default function Filters() {
         <div className="mt-10 flex flex-col md:flex-row justify-between items-center gap-10">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 justify-between items-center gap-3">
                 <Input
-                    placeholder="min price (after discount)"
+                    placeholder="min price"
                     className="w-40 rounded-full"
                     type="number"
                     min="0"
@@ -65,7 +65,7 @@ export default function Filters() {
                     onChange={ (e) => handlePriceChange('minPrice', e.target.value) }
                 />
                 <Input
-                    placeholder="max price (after discount)"
+                    placeholder="max price"
                     className="w-40 rounded-full"
                     type="number"
                     min="0"

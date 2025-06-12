@@ -30,7 +30,7 @@ export default function Navbar() {
                             <Link href={ link.href }>
                                 { link.name }
                             </Link>
-                            <div className='bg-gray-900 h-[2px] w-0 group-hover:w-full transition-all duration-300' />
+                            <div className='bg-primary h-[2px] w-0 group-hover:w-full transition-all duration-300' />
                         </li>
                     )) }
                 </ul>
