@@ -13,8 +13,9 @@ import {
 
 interface WishListBtnProps {
     id: string;
+    size: number;
 }
-export default function WishlistButton({ id }: WishListBtnProps) {
+export default function WishlistButton({ id, size }: WishListBtnProps) {
     const [isWishlisted, setIsWishlisted] = useState<boolean>(false)
     const [loadingWishlistCheck, setLoadingWishlistCheck] = useState(true);
 
@@ -45,18 +46,18 @@ export default function WishlistButton({ id }: WishListBtnProps) {
 
     const handleWish = async () => {
         if (isWishlisted) {
-            await removeFromWishlist(id)
             setIsWishlisted(false)
+            await removeFromWishlist(id)
         } else {
-            await addToWishlist(id)
             setIsWishlisted(true)
+            await addToWishlist(id)
         }
     }
     return (
         <Tooltip>
             <TooltipTrigger disabled={ loadingWishlistCheck }>
                 <Heart className={ `cursor-pointer transition duration-300  ${ isWishlisted ? 'fill-red-500 text-red-500' : ''
-                    }` } onClick={ () => handleWish() } />
+                    }` } onClick={ () => handleWish() } size={ size } />
             </TooltipTrigger>
             <TooltipContent>
                 <p>{ isWishlisted ? 'remove from wishlist' : 'Add to wishlist' }</p>

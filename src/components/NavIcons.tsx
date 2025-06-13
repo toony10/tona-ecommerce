@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { User } from '@supabase/supabase-js'
 import Link from 'next/link'
+import { CircleUserRound, ShoppingCart } from 'lucide-react'
 
 export default function NavIcons() {
 
@@ -40,7 +41,7 @@ export default function NavIcons() {
                 <>
                     <DropdownMenu>
                         <DropdownMenuTrigger className='cursor-pointer'>
-                            <Image src='/assets/profile.png' alt='' width={ 20 } height={ 20 } className='cursor-pointer' />
+                            <CircleUserRound />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className='p-0'>
                             <DropdownMenuLabel>
@@ -54,13 +55,11 @@ export default function NavIcons() {
                         </DropdownMenuContent>
                     </DropdownMenu>
 
-                    <Image src='/assets/notification.png' alt='' width={ 20 } height={ 20 } className='cursor-pointer' />
-
                     <DropdownMenu>
                         <DropdownMenuTrigger className='cursor-pointer'>
                             <div className='relative'>
                                 <div className='absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-4 h-4 text-center text-xs'>1</div>
-                                <Image src='/assets/cart.png' alt='cart' width={ 20 } height={ 20 } className='cursor-pointer' />
+                                <ShoppingCart />
                             </div>
                         </DropdownMenuTrigger>
                         <CartModel />

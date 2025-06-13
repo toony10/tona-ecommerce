@@ -62,7 +62,7 @@ export default async function ProductPage({ params }: { params: Params }) {
                     <div className='flex flex-col gap-2 justify-end-start'>
                         <h1 className='text-4xl font-medium flex items-center gap-2'>
                             { product?.title }
-                            <WishlistButton id={ product?.id ?? '' } />
+                            <WishlistButton id={ product?.id ?? '' } size={ 50 } />
                         </h1>
                         <Link href={ `/products?category=${ category?.name }` } className='text-gray-500 text-sm font-bold'>{ category?.name }</Link>
                     </div>
