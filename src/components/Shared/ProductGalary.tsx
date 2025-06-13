@@ -13,7 +13,7 @@ export default function ProductGalary({ images }: ProductGalleryProps) {
     return (
         <div className=''>
             {/* MAIN */ }
-            <div className='h-[500px] relative transition-all'>
+            <div className='h-[500px] md:h-[1000px] relative transition-all'>
                 { images && images && (
                     <Image alt='' src={ images[current] } fill sizes='100vw' className='object-cover rounded-md' />
                 ) }

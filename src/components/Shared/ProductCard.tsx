@@ -20,7 +20,7 @@ export default function ProductCard(product: Product) {
             </Link>
             <div className="p-0.5 flex flex-col gap-2">
                 <div className="flex items-center justify-between w-full min-h-12">
-                    <div className="font-semibold">{ product.title }</div>
+                    <div className="font-semibold line-clamp-3">{ product.title }</div>
                     { (product.discount_percentage ?? 0) > 0 ? (
                         <div className="text-sm font-semibold text-gray-900 flex flex-col items-center gap-2">
                             <span className="mr-2">
@@ -44,7 +44,7 @@ export default function ProductCard(product: Product) {
                 </div>
                 <p className=" text-gray-600 line-clamp-2">{ product.description }</p>
                 <div className='flex items-center justify-between pt-2'>
-                    <Button className="w-24 px-12 rounded-full border-[1px] font-semibold border-primary text-primary cursor-pointer hover:bg-primary hover:text-white transition-all duration-300">Add To Cart
+                    <Button className="w-24 px-12 rounded-full border-[1px] font-semibold border-primary text-primary cursor-pointer hover:bg-primary hover:text-white transition-all duration-300 ">Add To Cart
                     </Button>
                     <WishlistButton id={ product.id } />
                 </div>
