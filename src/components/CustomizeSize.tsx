@@ -1,7 +1,6 @@
 'use client'
 import { Size } from '@/types';
 import { useState } from 'react';
-import Heading from './Shared/Heading';
 
 interface Props {
     sizes: Size[] | null;
