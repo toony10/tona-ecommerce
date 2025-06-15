@@ -1,15 +1,15 @@
-import Add from '@/components/Add'
-import CustomizeProducts from '@/components/CustomizeProducts'
 import ProductGalary from '@/components/Shared/ProductGalary'
 import React from 'react'
 import { supabaseClient } from '@/utils/supabase/SB-client';
-import { Category, Product } from '@/types';
+import { Product, Category, Size } from '@/types';
 import { PostgrestError } from '@supabase/supabase-js';
 import WishlistButton from '@/components/Shared/WishlistButton';
 import Heading from '@/components/Shared/Heading';
 import ProductsList from '@/components/Shared/ProductsList';
 import Link from 'next/link';
 import { MoveRight } from 'lucide-react';
+import AddToCartBtn from '@/components/Shared/AddToCartBtn';
+import Logo from '@/components/Shared/Logo';
 
 type Params = Promise<{ id: string }>
 
@@ -24,7 +24,11 @@ export default async function ProductPage({ params }: { params: Params }) {
             .single();
 
     if (error) {
-        return <div>{ error.message }</div>
+        return <div className="flex flex-col items-center justify-center h-screen gap-5">
+            <Logo />
+            <p className='text-gray-800 text-2xl font-semibold'>The product you are looking for was not found.</p>
+            <Link href='/products' className='text-primary font-semibold text-lg'>Go to Products</Link>
+        </div>
     }
 
     const { data: category, error: categoryError }: { data: Category | null; error: PostgrestError | null } =
@@ -50,6 +54,28 @@ export default async function ProductPage({ params }: { params: Params }) {
         return <div>{ relatedError.message }</div>
     }
 
+    const { data: sizesId, error: sizesIdError } = await supabaseClient
+        .from('product_sizes')
+        .select('size_id')
+        .eq('product_id', id);
+
+
+
+    if (sizesIdError) {
+        return <div>{ sizesIdError.message }</div>
+    }
+
+
+    const { data: sizes, error: sizesError }: { data: Size[] | null; error: PostgrestError | null } = await supabaseClient
+        .from('sizes')
+        .select('*')
+        .in('id', sizesId?.map(size => size.size_id) ?? []);
+
+
+    if (sizesError) {
+        return <div>{ sizesError.message }</div>
+    }
+
     return (
         <div className='CustomeContainer flex flex-col lg:flex-row justify-between gap-10'>
             {/* IMG */ }
@@ -64,7 +90,7 @@ export default async function ProductPage({ params }: { params: Params }) {
                             { product?.title }
                             <WishlistButton id={ product?.id ?? '' } size={ 50 } />
                         </h1>
-                        <Link href={ `/products?category=${ category?.name }` } className='text-gray-500 text-sm font-bold'>{ category?.name }</Link>
+                        <Link href={ `/products?category=${ category?.name }` } className='text-gray-500 text-sm font-bold w-10'>{ category?.name }</Link>
                     </div>
 
                 </div>
@@ -93,8 +119,19 @@ export default async function ProductPage({ params }: { params: Params }) {
                 }
 
                 <div className='h-[2px] bg-gray-200' />
-                <CustomizeProducts />
-                <Add stok={ product?.stock ?? null } />
+                <h2 className=" font-bold text-xl text-gray-900 my-4">Available Sizes</h2>
+                <div className='flex gap-4 my-7 justify-between items-center flex-wrap'>
+                    <div className='flex gap-2 flex-wrap'>
+                        { sizes && sizes.length > 0 && (
+                            sizes.map((size) => (
+                                <span key={ size.id } className=' bg-gray-300 text-sm font-bold text-gray-800 rounded-full px-3 py-1 '>{ size.name }</span>
+                            ))
+                        ) }
+                    </div>
+                    <AddToCartBtn />
+                </div>
+
+                {/* <Add stok={ product?.stock ?? null } /> */ }
                 <div className='h-[2px] bg-gray-200' />
                 { relatedProducts && relatedProducts.length > 0 && (
 

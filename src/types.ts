@@ -2,6 +2,12 @@ export interface Product {
   id: string;
   title: string;
   description: string | null;
+  product_sizes?: {
+    size: {
+      id: string;
+      name: string;
+    };
+  }[];
   images: string[] | null;
   price: number;
   discount_percentage: number | null;
@@ -16,4 +22,9 @@ export interface Category {
   name: string;
   image: string | null;
   created_at: string | null;
+}
+
+export interface Size {
+  id: string;
+  name: string;
 }

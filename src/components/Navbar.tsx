@@ -11,7 +11,7 @@ export default function Navbar() {
         { name: 'Home', href: '/' },
         { name: 'Shop', href: '/products' },
         { name: 'Orders', href: '/orders' },
-        { name: 'Deals', href: '/orders' }
+        { name: 'WishList', href: '/wishlist' }
     ]
     return (
         <div className='h-32 pb-4 md:pb-0 px-10 md:px-24 relative flex flex-col md:flex-row justify-between mb-3 md:mb-0 '>

@@ -27,12 +27,12 @@ export default function Add({ stok }: Props) {
     }
     return (
         <div className='my-7'>
-            <h4 className='font-medium'>Choose a Quantity</h4>
+            <h4 className='font-medium'>Choose a quantity</h4>
             <div className='flex flex-col md:flex-row items-center justify-between pt-5 gap-5'>
                 <div className='flex gap-5 w-full justify-between md:justify-start'>
                     <div className='bg-gray-300 font-semibold w-32 rounded-full flex items-center justify-between md:py-3 px-4 text-lg'>
                         <span className='cursor-pointer' onClick={ decrease }>-</span>
-                        <span>{ Qty }</span>
+                        <input value={ Qty } readOnly className='w-10 text-center border-none outline-none' />
                         {
                             Qty < (stok ?? 0) ?
                                 <span className='cursor-pointer' onClick={ increase }>+</span>
