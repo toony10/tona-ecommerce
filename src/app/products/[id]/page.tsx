@@ -8,8 +8,8 @@ import Heading from '@/components/Shared/Heading';
 import ProductsList from '@/components/Shared/ProductsList';
 import Link from 'next/link';
 import { MoveRight } from 'lucide-react';
-import AddToCartBtn from '@/components/Shared/AddToCartBtn';
 import Logo from '@/components/Shared/Logo';
+import { AddCartModle } from '@/components/AddCartModle';
 
 type Params = Promise<{ id: string }>
 
@@ -128,7 +128,7 @@ export default async function ProductPage({ params }: { params: Params }) {
                             ))
                         ) }
                     </div>
-                    <AddToCartBtn />
+                    <AddCartModle product={ product } sizes={ sizes } />
                 </div>
 
                 {/* <Add stok={ product?.stock ?? null } /> */ }
