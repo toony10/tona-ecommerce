@@ -28,3 +28,9 @@ export interface Size {
   id: string;
   name: string;
 }
+
+export interface CartItem {
+  product: Product;
+  quantity: number;
+  size: string;
+}

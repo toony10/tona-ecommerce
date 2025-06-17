@@ -4,22 +4,24 @@ import Logo from "./Shared/Logo"
 
 interface Props {
     stock: number | null | undefined;
+    quantity: number;
+    setQuantity: (q: number) => void;
 }
-export default function CustomizeQuantity({ stock }: Props) {
-    const [Qty, setQty] = useState(1);
-    const [aleart, setAleart] = useState(false);
+
+export default function CustomizeQuantity({ stock, quantity, setQuantity }: Props) {
+    const [alert, setAlert] = useState(false);
 
     const increase = () => {
-        if (Qty < (stock ?? 0)) {
-            setQty((prev) => prev + 1)
+        if (quantity < (stock ?? 0)) {
+            setQuantity(quantity + 1);
         } else {
-            setAleart(!aleart)
+            setAlert(true);
         }
     }
 
     const decrease = () => {
-        if (Qty >= 2) {
-            setQty((prev) => prev - 1)
+        if (quantity > 1) {
+            setQuantity(quantity - 1);
         }
     }
     return (
@@ -37,13 +39,13 @@ export default function CustomizeQuantity({ stock }: Props) {
                 </span>
                 <div className="flex-1 text-center">
                     <div className="text-7xl font-bold tracking-tighter">
-                        { Qty }
+                        { quantity }
                     </div>
 
                 </div>
                 <div>
                     {
-                        Qty < (stock ?? 0) ?
+                        quantity < (stock ?? 0) ?
                             <span
                                 className="h-8 w-8 bg-gray-100 border-2 border-gray-200 p-6 text-3xl flex items-center justify-center shrink-0 rounded-full"
                                 onClick={ increase }

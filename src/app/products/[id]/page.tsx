@@ -119,7 +119,9 @@ export default async function ProductPage({ params }: { params: Params }) {
                 }
 
                 <div className='h-[2px] bg-gray-200' />
-                <h2 className=" font-bold text-xl text-gray-900 my-4">Available Sizes</h2>
+                <h2 className=" font-bold text-xl text-gray-900 my-4">
+                    Size{ sizes && sizes.length > 1 ? 's' : '' }
+                </h2>
                 <div className='flex gap-4 my-7 justify-between items-center flex-wrap'>
                     <div className='flex gap-2 flex-wrap'>
                         { sizes && sizes.length > 0 && (

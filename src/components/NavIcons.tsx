@@ -14,8 +14,12 @@ import { useRouter } from 'next/navigation'
 import { User } from '@supabase/supabase-js'
 import Link from 'next/link'
 import { CircleUserRound, ShoppingCart } from 'lucide-react'
+import { useCartStore } from "@/store/cart.store"
+
 
 export default function NavIcons() {
+
+    const { cart } = useCartStore()
 
     const router = useRouter();
     const [user, setUser] = useState<User | null>(null);
@@ -37,35 +41,35 @@ export default function NavIcons() {
     return (
         <div className='flex items-center justify-between gap-2 md:gap-4'>
             { user ?
-                <>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger className='cursor-pointer'>
-                            <CircleUserRound />
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent className='p-0'>
-                            <DropdownMenuLabel>
-                                <span>{ user.email }</span>
-                            </DropdownMenuLabel>
-                            <DropdownMenuSeparator className='mx-1' />
-                            <Link href={ '/wishlist' } >
-                                <DropdownMenuLabel className='cursor-pointer hover:bg-gray-400'>Wish List</DropdownMenuLabel>
-                            </Link>
-                            <DropdownMenuLabel className='cursor-pointer hover:bg-gray-400' onClick={ () => handleSignOut() }>Logout</DropdownMenuLabel>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-
-                    <DropdownMenu>
-                        <DropdownMenuTrigger className='cursor-pointer'>
-                            <div className='relative'>
-                                <div className='absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-4 h-4 text-center text-xs'>1</div>
-                                <ShoppingCart />
-                            </div>
-                        </DropdownMenuTrigger>
-                        <CartModel />
-                    </DropdownMenu>
-                </>
-                : <Button className='bg-primary cursor-pointer' onClick={ () => router.push('/register') }>Login</Button> }
-
+                <DropdownMenu>
+                    <DropdownMenuTrigger className='cursor-pointer'>
+                        <CircleUserRound />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className='p-0'>
+                        <DropdownMenuLabel>
+                            <span>{ user.email }</span>
+                        </DropdownMenuLabel>
+                        <DropdownMenuSeparator className='mx-1' />
+                        <Link href={ '/wishlist' } >
+                            <DropdownMenuLabel className='cursor-pointer hover:bg-gray-400'>Wish List</DropdownMenuLabel>
+                        </Link>
+                        <DropdownMenuLabel className='cursor-pointer hover:bg-gray-400' onClick={ () => handleSignOut() }>Logout</DropdownMenuLabel>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+                :
+                <Button className='bg-primary cursor-pointer' onClick={ () => router.push('/register') }>Login</Button>
+            }
+            <DropdownMenu>
+                <DropdownMenuTrigger className='cursor-pointer'>
+                    <div className='relative'>
+                        { cart.length > 0 &&
+                            <span className='absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-4 h-4 text-center text-xs'>{ cart.length }</span>
+                        }
+                        <ShoppingCart />
+                    </div>
+                </DropdownMenuTrigger>
+                <CartModel />
+            </DropdownMenu>
         </div>
     )
 }
