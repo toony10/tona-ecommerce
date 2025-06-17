@@ -1,8 +1,8 @@
 import { supabaseServer } from "@/utils/supabase/SB-server";
 import ProductsList from "@/components/Shared/ProductsList";
 import Heading from "@/components/Shared/Heading";
-import { redirect } from "next/navigation";
 import Link from "next/link";
+import WishlistClient from "@/components/WishlistClient";
 
 export default async function WishlistPage() {
     const supabase = await supabaseServer();
@@ -10,9 +10,11 @@ export default async function WishlistPage() {
     const { data: { user } } = await supabase.auth.getUser();
 
     if (!user) {
-        redirect("/register");
+        // For unauthenticated users, we'll use client-side rendering
+        return <WishlistClient />;
     }
 
+    // For authenticated users, fetch from Supabase
     const { data: wishlistItems, error: wishlistError } = await supabase
         .from("wishlist")
         .select("product_id")
