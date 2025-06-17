@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "./ui/alert-dialog"
 import Logo from "./Shared/Logo"
 
@@ -9,13 +8,10 @@ interface Props {
 }
 
 export default function CustomizeQuantity({ stock, quantity, setQuantity }: Props) {
-    const [alert, setAlert] = useState(false);
 
     const increase = () => {
         if (quantity < (stock ?? 0)) {
             setQuantity(quantity + 1);
-        } else {
-            setAlert(true);
         }
     }
 

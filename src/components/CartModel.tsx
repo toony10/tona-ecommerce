@@ -1,7 +1,6 @@
 'use client'
 import Image from 'next/image'
 import { Button } from './ui/button'
-import { useRouter } from 'next/navigation'
 import {
     DropdownMenuContent,
     DropdownMenuSeparator
@@ -11,7 +10,6 @@ import { Trash2 } from 'lucide-react'
 import Link from 'next/link'
 
 export default function CartModel() {
-    const router = useRouter()
     const { cart, removeFromCart } = useCartStore()
 
     const total = cart.reduce((sum, item) => {

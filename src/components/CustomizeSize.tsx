@@ -1,6 +1,5 @@
 'use client'
 import { Size } from '@/types';
-import { useState } from 'react';
 
 interface Props {
     sizes: Size[] | null;

@@ -61,7 +61,7 @@ export default function CartPage() {
                                     <Button
                                         variant="destructive"
                                         size="sm"
-                                        onClick={ () => removeFromCart(item.product.id, item.size) }
+                                        onClick={ () => removeFromCart(cart.indexOf(item)) }
                                     >
                                         <Trash2 size={ 14 } className="mr-1" /> Remove
                                     </Button>
