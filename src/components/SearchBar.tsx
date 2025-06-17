@@ -150,7 +150,7 @@ export default function SearchBar() {
                                     className="text-sm text-blue-600 hover:text-blue-800 block text-center"
                                     onClick={ () => setShowSuggestions(false) }
                                 >
-                                    View all results for "{ searchTerm }"
+                                    View all results for &ldquo;{ searchTerm }&ldquo;
                                 </Link>
                             </div>
                         </div>
