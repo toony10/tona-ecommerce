@@ -1,58 +1,6 @@
-import { supabaseServer } from "@/utils/supabase/SB-server";
-import ProductsList from "@/components/Shared/ProductsList";
-import Heading from "@/components/Shared/Heading";
-import Link from "next/link";
 import WishlistClient from "@/components/WishlistClient";
 
 export default async function WishlistPage() {
-    const supabase = await supabaseServer();
-
-    const { data: { user } } = await supabase.auth.getUser();
-
-    if (!user) {
-        // For unauthenticated users, we'll use client-side rendering
-        return <WishlistClient />;
-    }
-
-    // For authenticated users, fetch from Supabase
-    const { data: wishlistItems, error: wishlistError } = await supabase
-        .from("wishlist")
-        .select("product_id")
-        .eq("user_id", user.id);
-
-    if (wishlistError) {
-        console.error("Error fetching wishlist:", wishlistError);
-        return <div className="px-10 py-20 text-center">Error loading wishlist.</div>;
-    }
-
-    const productIds = wishlistItems?.map(item => item.product_id) || [];
-
-    if (productIds.length === 0) {
-        return (
-            <div className="px-10 py-20 text-center">
-                <Heading text="Your Wishlist" />
-                <p className="text-gray-500 mt-4">You have no items in your wishlist.</p>
-                <Link href="/products" className="text-blue-500 hover:underline mt-4">
-                    Browse Products
-                </Link>
-            </div>
-        );
-    }
-
-    const { data: products, error: productsError } = await supabase
-        .from("products")
-        .select("*")
-        .in("id", productIds);
-
-    if (productsError) {
-        console.error("Error fetching products for wishlist:", productsError);
-        return <div className="px-10 py-20 text-center">Error loading wishlist products.</div>;
-    }
-
-    return (
-        <div className="px-10 py-20">
-            <Heading text="Your Wishlist" />
-            <ProductsList products={ products || [] } />
-        </div>
-    );
+    // Always render the client-side component which uses the Zustand store.
+    return <WishlistClient />;
 }

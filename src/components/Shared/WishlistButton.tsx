@@ -1,7 +1,5 @@
 'use client';
 
-import { supabaseClient } from '@/utils/supabase/SB-client';
-import { removeFromWishlist, addToWishlist } from '@/utils/wish-list';
 import { Heart } from 'lucide-react';
 import React, { useEffect, useState } from 'react'
 import {
@@ -15,74 +13,38 @@ interface WishListBtnProps {
     id: string;
     size: number;
 }
+
 export default function WishlistButton({ id, size }: WishListBtnProps) {
-    const [isWishlisted, setIsWishlisted] = useState<boolean>(false)
-    const [loadingWishlistCheck, setLoadingWishlistCheck] = useState(true);
-    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+    const {
+        addToWishlist,
+        removeFromWishlist,
+        isInWishlist,
+        wishlistItems
+    } = useWishlistStore();
 
-    // Local wishlist store for unauthenticated users
-    const { addToWishlist: addToLocalWishlist, removeFromWishlist: removeFromLocalWishlist, isInWishlist } = useWishlistStore();
+    const [isWishlisted, setIsWishlisted] = useState(false);
 
-    const supabase = supabaseClient;
-
+    // Update isWishlisted state whenever the zustand store changes
     useEffect(() => {
-        const checkWishlist = async () => {
-            const { data: { user } } = await supabase.auth.getUser();
+        setIsWishlisted(isInWishlist(id));
+    }, [id, isInWishlist, wishlistItems]);
 
-            if (!user) {
-                // User is not authenticated, use local wishlist
-                setIsAuthenticated(false);
-                setIsWishlisted(isInWishlist(id));
-                setLoadingWishlistCheck(false);
-                return;
-            }
-
-            // User is authenticated, use Supabase wishlist
-            setIsAuthenticated(true);
-            const { data } = await supabase
-                .from('wishlist')
-                .select('id')
-                .eq('user_id', user.id)
-                .eq('product_id', id)
-                .single();
-
-            if (data) {
-                setIsWishlisted(true);
-            }
-            setLoadingWishlistCheck(false);
-        };
-
-        checkWishlist();
-    }, [id, isInWishlist]);
-
-    const handleWish = async () => {
-        if (!isAuthenticated) {
-            // Handle local wishlist for unauthenticated users
-            if (isWishlisted) {
-                removeFromLocalWishlist(id);
-                setIsWishlisted(false);
-            } else {
-                addToLocalWishlist(id);
-                setIsWishlisted(true);
-            }
+    const handleWish = () => {
+        if (isWishlisted) {
+            removeFromWishlist(id);
+            setIsWishlisted(false);
         } else {
-            // Handle Supabase wishlist for authenticated users
-            if (isWishlisted) {
-                setIsWishlisted(false)
-                await removeFromWishlist(id)
-            } else {
-                setIsWishlisted(true)
-                await addToWishlist(id)
-            }
+            addToWishlist(id);
+            setIsWishlisted(true);
         }
     }
 
     return (
         <Tooltip>
-            <TooltipTrigger disabled={ loadingWishlistCheck }>
+            <TooltipTrigger>
                 <Heart
                     className={ `cursor-pointer transition duration-300 ${ isWishlisted ? 'fill-red-500 text-red-500' : '' }` }
-                    onClick={ () => handleWish() }
+                    onClick={ handleWish }
                     size={ size }
                 />
             </TooltipTrigger>
