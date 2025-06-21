@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { useCartStore } from "@/store/cart.store"
 import { Trash2 } from "lucide-react"
 import Heading from "@/components/Shared/Heading"
+import CheckoutBtn from "@/components/Shared/CheckoutBtn"
 
 export default function CartPage() {
     const { cart, removeFromCart, clearCart } = useCartStore()
@@ -76,9 +77,7 @@ export default function CartPage() {
                         </div>
                         <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto justify-center md:justify-end">
                             <Button variant="outline" onClick={ clearCart } className="w-full sm:w-auto">Clear Cart</Button>
-                            <Link href="/checkOut" className="w-full sm:w-auto">
-                                <Button className="bg-primary text-white w-full sm:w-auto">Proceed to Checkout</Button>
-                            </Link>
+                            <CheckoutBtn />
                         </div>
                     </div>
                 </>

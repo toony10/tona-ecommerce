@@ -9,20 +9,20 @@ import {
 import { Button } from './ui/button'
 import CartModel from './CartModel'
 import { supabaseClient } from '@/utils/supabase/SB-client'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { User } from '@supabase/supabase-js'
 import Link from 'next/link'
 import { CircleUserRound, ShoppingCart, Heart } from 'lucide-react'
 import { useCartStore } from "@/store/cart.store"
 import { useWishlistStore } from "@/store/wishlist.store"
+import { useUserStore } from '@/store/user.store'
 
 export default function NavIcons() {
     const { cart } = useCartStore()
     const { wishlistItems } = useWishlistStore()
-
+    const { user, setUser } = useUserStore()
     const router = useRouter();
-    const [user, setUser] = useState<User | null>(null);
 
     const handleSignOut = async () => {
         await supabaseClient.auth.signOut();

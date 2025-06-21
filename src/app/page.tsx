@@ -2,18 +2,20 @@ import CategoriesList from "@/components/CategoriesList";
 import Heading from "@/components/Shared/Heading";
 import ProductsList from "@/components/Shared/ProductsList";
 import Slider from "@/components/Slider";
-import { supabaseServer } from "@/utils/supabase/SB-server";
 import Link from "next/link";
 import { MoveRight } from "lucide-react";
-export default async function Home() {
-  const supabase = await supabaseServer();
+import { getProducts, getCategories } from "@/actions/products";
 
-  const { data: products } = await supabase
-    .from('products')
-    .select('*')
-    .order('sold_count', { ascending: false })
-    .limit(4);
-  const { data: categories } = await supabase.from('categories').select('*');
+export default async function Home() {
+  const [productsResponse, categoriesResponse] = await Promise.all([
+    getProducts(),
+    getCategories(),
+  ]);
+
+  const { products } = productsResponse ?? {};
+  const { categories } = categoriesResponse ?? {};
+
+
   return (
     <div>
       <Slider />

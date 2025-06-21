@@ -3,11 +3,14 @@ import Image from 'next/image'
 import { Button } from './ui/button'
 import {
     DropdownMenuContent,
-    DropdownMenuSeparator
+    DropdownMenuSeparator,
+    DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
 import { useCartStore } from '@/store/cart.store'
 import { Trash2 } from 'lucide-react'
 import Link from 'next/link'
+import CheckoutBtn from './Shared/CheckoutBtn'
+import DropdownMenu from './Shared/DropdownMenu'
 
 export default function CartModel() {
     const { cart, removeFromCart } = useCartStore()
@@ -72,16 +75,14 @@ export default function CartModel() {
                         Shipping and taxes calculated at checkout
                     </p>
                     <div className='flex items-center justify-between p-2'>
-                        <Link href='/cart'>
-                            <Button className='bg-white text-black border cursor-pointer'>
+
+                        <Link href='/cart' >
+                            <Button className='text-gray-950 bg-gray-100 border-2 border-gray-200 cursor-pointer'>
                                 View Cart
                             </Button>
                         </Link>
-                        <Link href='/checkOut'>
-                            <Button className='bg-primary cursor-pointer'>
-                                Check out
-                            </Button>
-                        </Link>
+
+                        <CheckoutBtn />
                     </div>
                 </>
             ) }

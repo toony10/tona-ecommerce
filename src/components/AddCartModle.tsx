@@ -61,10 +61,6 @@ export function AddCartModle({ product, sizes }: Props) {
 
                     <DrawerFooter>
                         <DrawerClose asChild>
-                            {/* <Button
-                                className="bg-primary cursor-pointer" onClick={ handleAddToCart }>
-                                <ShoppingCart /> Add
-                            </Button> */}
                             <Button
                                 className="bg-primary cursor-pointer"
                                 onClick={ () => {

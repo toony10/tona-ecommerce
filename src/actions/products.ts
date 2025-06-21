@@ -2,6 +2,22 @@
 
 import { supabaseServer } from '../utils/supabase/SB-server';
 
+export async function getProducts() {
+  const supabase = await supabaseServer();
+  const { data, error } = await supabase.from('products').select('*');
+  if (error) {
+    return { products: [], error: error.message };
+  }
+  return { products: data, error: null };
+}
+export async function getCategories() {
+  const supabase = await supabaseServer();
+  const { data, error } = await supabase.from('categories').select('*');
+  if (error) {
+    return { categories: [], error: error.message };
+  }
+}
+
 function calculateDiscountedPrice(price: number, discountPercentage: number | null): number {
   if (!discountPercentage) return price;
   return price * (1 - discountPercentage / 100);
