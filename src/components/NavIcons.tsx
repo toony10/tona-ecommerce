@@ -42,16 +42,6 @@ export default function NavIcons() {
 
     return (
         <div className='flex items-center justify-between gap-2 md:gap-4'>
-            {/* Wishlist Icon */ }
-            <Link href="/wishlist" className="relative cursor-pointer">
-                { wishlistCount > 0 && (
-                    <span className='absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-4 h-4 text-center text-xs'>
-                        { wishlistCount }
-                    </span>
-                ) }
-                <Heart className="w-6 h-6" />
-            </Link>
-
             {/* User Menu */ }
             { user ? (
                 <DropdownMenu>
@@ -72,6 +62,16 @@ export default function NavIcons() {
             ) : (
                 <Button className='bg-primary cursor-pointer' onClick={ () => router.push('/register') }>Login</Button>
             ) }
+
+            {/* Wishlist Icon */ }
+            <Link href="/wishlist" className="relative cursor-pointer">
+                { wishlistCount > 0 && (
+                    <span className='absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-4 h-4 text-center text-xs'>
+                        { wishlistCount }
+                    </span>
+                ) }
+                <Heart className="w-6 h-6" />
+            </Link>
 
             {/* Cart */ }
             <DropdownMenu>
