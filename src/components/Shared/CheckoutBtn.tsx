@@ -42,9 +42,11 @@ function CheckoutBtn() {
                         </AlertDialogHeader>
                         <AlertDialogFooter>
                             <AlertDialogCancel>Cancel</AlertDialogCancel>
-                            <AlertDialogCancel onClick={ () => router.push('./register') }>
-                                Login
-                            </AlertDialogCancel>
+                            <Link href='./register'>
+                                <AlertDialogCancel>
+                                    Login
+                                </AlertDialogCancel>
+                            </Link>
                         </AlertDialogFooter>
                     </AlertDialogContent>
                 </AlertDialog> }
