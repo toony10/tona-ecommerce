@@ -1,7 +1,6 @@
 
 import { Button } from "../ui/button"
 import { useUserStore } from "@/store/user.store"
-import { useRouter } from "next/navigation"
 import {
     AlertDialog,
     AlertDialogCancel,
@@ -15,7 +14,6 @@ import {
 import Link from "next/link"
 function CheckoutBtn() {
     const { user } = useUserStore();
-    const router = useRouter();
     return (
         <div>
             { user ?
