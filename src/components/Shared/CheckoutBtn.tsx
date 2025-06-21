@@ -2,7 +2,6 @@
 import { Button } from "../ui/button"
 import { useUserStore } from "@/store/user.store"
 import { useRouter } from "next/navigation"
-import Logo from "./Logo"
 import {
     AlertDialog,
     AlertDialogCancel,

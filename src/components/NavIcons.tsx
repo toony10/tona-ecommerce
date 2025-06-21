@@ -11,7 +11,6 @@ import CartModel from './CartModel'
 import { supabaseClient } from '@/utils/supabase/SB-client'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { User } from '@supabase/supabase-js'
 import Link from 'next/link'
 import { CircleUserRound, ShoppingCart, Heart } from 'lucide-react'
 import { useCartStore } from "@/store/cart.store"

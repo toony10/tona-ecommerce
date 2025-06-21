@@ -3,14 +3,12 @@ import Image from 'next/image'
 import { Button } from './ui/button'
 import {
     DropdownMenuContent,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger
+    DropdownMenuSeparator
 } from "@/components/ui/dropdown-menu"
 import { useCartStore } from '@/store/cart.store'
 import { Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import CheckoutBtn from './Shared/CheckoutBtn'
-import DropdownMenu from './Shared/DropdownMenu'
 
 export default function CartModel() {
     const { cart, removeFromCart } = useCartStore()
