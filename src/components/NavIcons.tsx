@@ -9,7 +9,7 @@ import {
 import { Button } from './ui/button'
 import CartModel from './CartModel'
 import { supabaseClient } from '@/utils/supabase/SB-client'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { CircleUserRound, ShoppingCart, Heart } from 'lucide-react'
@@ -22,6 +22,9 @@ export default function NavIcons() {
     const { wishlistItems } = useWishlistStore()
     const { user, setUser } = useUserStore()
     const router = useRouter();
+
+    // Add open state for cart dropdown
+    const [cartOpen, setCartOpen] = useState(false);
 
     const handleSignOut = async () => {
         await supabaseClient.auth.signOut();
@@ -73,7 +76,7 @@ export default function NavIcons() {
             </Link>
 
             {/* Cart */ }
-            <DropdownMenu>
+            <DropdownMenu open={ cartOpen } onOpenChange={ setCartOpen }>
                 <DropdownMenuTrigger className='cursor-pointer'>
                     <div className='relative'>
                         { cart.length > 0 && (
@@ -82,7 +85,7 @@ export default function NavIcons() {
                         <ShoppingCart />
                     </div>
                 </DropdownMenuTrigger>
-                <CartModel />
+                <CartModel closeCart={ () => setCartOpen(false) } />
             </DropdownMenu>
         </div>
     )

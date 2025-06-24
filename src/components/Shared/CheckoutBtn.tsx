@@ -1,4 +1,3 @@
-
 import { Button } from "../ui/button"
 import { useUserStore } from "@/store/user.store"
 import {
@@ -12,19 +11,20 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import Link from "next/link"
-function CheckoutBtn() {
+
+function CheckoutBtn({ onClick }: { onClick?: () => void }) {
     const { user } = useUserStore();
     return (
         <div>
             { user ?
                 <Link href='/checkout'>
-                    <Button className='bg-primary cursor-pointer'>
+                    <Button className='bg-primary cursor-pointer' onClick={ onClick }>
                         Check out
                     </Button>
                 </Link>
                 :
                 <AlertDialog>
-                    <AlertDialogTrigger>
+                    <AlertDialogTrigger asChild>
                         <span className='text-white p-2 bg-primary cursor-pointer rounded-lg'>
                             Checkout
                         </span>
@@ -39,9 +39,11 @@ function CheckoutBtn() {
                             </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogCancel className="opacity-80 cursor-pointer">
+                                Cancel
+                            </AlertDialogCancel>
                             <Link href='./register'>
-                                <AlertDialogCancel>
+                                <AlertDialogCancel className="w-full cursor-pointer" onClick={ onClick }>
                                     Login
                                 </AlertDialogCancel>
                             </Link>

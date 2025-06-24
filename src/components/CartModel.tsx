@@ -10,7 +10,12 @@ import { Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import CheckoutBtn from './Shared/CheckoutBtn'
 
-export default function CartModel() {
+// Add prop type for closeCart
+interface CartModelProps {
+    closeCart: () => void;
+}
+
+export default function CartModel({ closeCart }: CartModelProps) {
     const { cart, removeFromCart } = useCartStore()
 
     const total = cart.reduce((sum, item) => {
@@ -75,12 +80,12 @@ export default function CartModel() {
                     <div className='flex items-center justify-between p-2'>
 
                         <Link href='/cart' >
-                            <Button className='text-gray-950 bg-gray-100 border-2 border-gray-200 cursor-pointer'>
+                            <Button className='text-gray-950 bg-gray-100 border-2 border-gray-200 cursor-pointer' onClick={ closeCart }>
                                 View Cart
                             </Button>
                         </Link>
 
-                        <CheckoutBtn />
+                        <CheckoutBtn onClick={ closeCart } />
                     </div>
                 </>
             ) }
