@@ -9,6 +9,7 @@ import { useCartStore } from '@/store/cart.store'
 import { Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import CheckoutBtn from './Shared/CheckoutBtn'
+import { useUserStore } from '@/store/user.store'
 
 // Add prop type for closeCart
 interface CartModelProps {
@@ -17,6 +18,7 @@ interface CartModelProps {
 
 export default function CartModel({ closeCart }: CartModelProps) {
     const { cart, removeFromCart } = useCartStore()
+    const { user } = useUserStore();
 
     const total = cart.reduce((sum, item) => {
         const price = item.product.discount_percentage
@@ -85,7 +87,11 @@ export default function CartModel({ closeCart }: CartModelProps) {
                             </Button>
                         </Link>
 
-                        <CheckoutBtn onClick={ closeCart } />
+                        { user ? (
+                            <CheckoutBtn onClick={ closeCart } />
+                        ) : (
+                            <CheckoutBtn />
+                        ) }
                     </div>
                 </>
             ) }

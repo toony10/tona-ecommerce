@@ -75,9 +75,9 @@ export default function CartPage() {
                         <div className="text-xl font-semibold text-center md:text-left">
                             Total: <span className="text-primary">${ total.toFixed(2) }</span>
                         </div>
-                        <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto justify-center md:justify-end">
-                            <Button variant="outline" onClick={ clearCart } className="w-full sm:w-auto">Clear Cart</Button>
+                        <div className="flex flex-col sm:flex-row gap-5 w-full md:w-auto justify-center md:justify-end items-center">
                             <CheckoutBtn />
+                            <Button variant="outline" onClick={ clearCart } className="w-full sm:w-auto">Clear Cart</Button>
                         </div>
                     </div>
                 </>

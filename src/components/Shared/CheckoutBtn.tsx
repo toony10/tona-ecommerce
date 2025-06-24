@@ -17,7 +17,7 @@ function CheckoutBtn({ onClick }: { onClick?: () => void }) {
     return (
         <div>
             { user ?
-                <Link href='/checkout'>
+                <Link href='/checkout' className="w-full sm:w-auto">
                     <Button className='bg-primary cursor-pointer' onClick={ onClick }>
                         Check out
                     </Button>
@@ -25,7 +25,7 @@ function CheckoutBtn({ onClick }: { onClick?: () => void }) {
                 :
                 <AlertDialog>
                     <AlertDialogTrigger asChild>
-                        <span className='text-white p-2 bg-primary cursor-pointer rounded-lg'>
+                        <span className='text-white p-2 bg-primary cursor-pointer rounded-lg w-full sm:w-auto' >
                             Checkout
                         </span>
                     </AlertDialogTrigger>
