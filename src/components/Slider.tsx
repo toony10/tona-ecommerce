@@ -62,7 +62,7 @@ export default function Slider() {
                         </div>
                         {/* IMAGE CONTAINER */ }
                         <div className="xl:w-1/2 h-1/2 xl:h-full relative">
-                            <Image unoptimized src={ slide.img } alt="" fill sizes="100%" className="object-cover" />
+                            <Image src={ slide.img } alt="" fill sizes="100%" className="object-cover" />
                         </div>
                     </div>
                 )) }

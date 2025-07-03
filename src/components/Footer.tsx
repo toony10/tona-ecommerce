@@ -30,11 +30,11 @@ export default function Footer() {
                             </Link>
                         </li>
                         <li className='grid grid-cols-3 xl:grid-cols-5 justify-between gap-5'>
-                            <Image unoptimized src="/assets/facebook.png" sizes='100vh' className='cursor-pointer' alt="" width={ 21 } height={ 21 } />
-                            <Image unoptimized src="/assets/instagram.png" sizes='100vh' className='cursor-pointer' alt="" width={ 21 } height={ 21 } />
-                            <Image unoptimized src="/assets/youtube.png" sizes='100vh' className='cursor-pointer' alt="" width={ 21 } height={ 21 } />
-                            <Image unoptimized src="/assets/pinterest.png" sizes='100vh' className='cursor-pointer' alt="" width={ 21 } height={ 21 } />
-                            <Image unoptimized src="/assets/x.png" alt="" sizes='100vh' className='cursor-pointer' width={ 21 } height={ 21 } />
+                            <Image src="/assets/facebook.png" sizes='100vh' className='cursor-pointer' alt="" width={ 21 } height={ 21 } />
+                            <Image src="/assets/instagram.png" sizes='100vh' className='cursor-pointer' alt="" width={ 21 } height={ 21 } />
+                            <Image src="/assets/youtube.png" sizes='100vh' className='cursor-pointer' alt="" width={ 21 } height={ 21 } />
+                            <Image src="/assets/pinterest.png" sizes='100vh' className='cursor-pointer' alt="" width={ 21 } height={ 21 } />
+                            <Image src="/assets/x.png" alt="" sizes='100vh' className='cursor-pointer' width={ 21 } height={ 21 } />
                         </li>
                     </ul>
                 </div>
@@ -120,11 +120,11 @@ export default function Footer() {
                             Secure Payments
                         </li>
                         <li className='flex gap-2.5'>
-                            <Image unoptimized src="/assets/discover.png" sizes='100vh' alt="" width={ 45 } height={ 20 } className='cursor-pointer' />
-                            <Image unoptimized src="/assets/skrill.png" sizes='100vh' alt="" width={ 45 } height={ 20 } className='cursor-pointer' />
-                            <Image unoptimized src="/assets/paypal.png" sizes='100vh' alt="" width={ 45 } height={ 20 } className='cursor-pointer' />
-                            <Image unoptimized src="/assets/mastercard.png" sizes='100vh' alt="" width={ 45 } height={ 20 } className='cursor-pointer' />
-                            <Image unoptimized src="/assets/visa.png" sizes='100vh' alt="" width={ 45 } height={ 20 } className='cursor-pointer' />
+                            <Image src="/assets/discover.png" sizes='100vh' alt="" width={ 45 } height={ 20 } className='cursor-pointer' />
+                            <Image src="/assets/skrill.png" sizes='100vh' alt="" width={ 45 } height={ 20 } className='cursor-pointer' />
+                            <Image src="/assets/paypal.png" sizes='100vh' alt="" width={ 45 } height={ 20 } className='cursor-pointer' />
+                            <Image src="/assets/mastercard.png" sizes='100vh' alt="" width={ 45 } height={ 20 } className='cursor-pointer' />
+                            <Image src="/assets/visa.png" sizes='100vh' alt="" width={ 45 } height={ 20 } className='cursor-pointer' />
                         </li>
                     </ul>
                 </div>

@@ -17,7 +17,7 @@ export default function MobileMenu({ Links }: MenuProps) {
 
     return (
         <div>
-            <Image unoptimized src='/assets/menu.png' width={ 28 } height={ 28 } alt="#" className="cursor-pointer md:hidden" onClick={ () => toggleMenu() } />
+            <Image src='/assets/menu.png' width={ 28 } height={ 28 } alt="#" className="cursor-pointer md:hidden" onClick={ () => toggleMenu() } />
             <ul className="fixed z-50 bg-gray-900 text-white text-2xl font-semibold tracking-widest left-0 top-32 w-full h-[100vh] flex flex-col justify-center items-center gap-8 container" style={ { display: isOpen ? 'flex' : 'none' } }>
                 <span className="text-4xl font-bold  absolute top-5 right-5" onClick={ () => toggleMenu() }>X</span>
                 { isOpen && (

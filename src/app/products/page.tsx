@@ -38,7 +38,7 @@ export default async function ProductsPage({ searchParams }: PageProps) {
                     </Button>
                 </div>
                 <div className="relative w-1/3">
-                    <Image unoptimized src="/assets/woman.png" alt="" fill className="object-contain" />
+                    <Image src="/assets/woman.png" alt="" fill className="object-contain" />
                 </div>
             </div>
 
