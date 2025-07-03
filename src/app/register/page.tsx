@@ -13,7 +13,7 @@ export default function Login() {
                 </div>
             </div>
             <div className="bg-muted relative hidden lg:block h-full">
-                <Image
+                <Image unoptimized
                     src="https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&w=800"
                     alt="Image"
                     fill

@@ -38,7 +38,7 @@ export default function CartPage() {
                                 className="flex flex-col md:flex-row items-start md:items-center justify-between border rounded-lg p-4 gap-4 shadow-sm"
                             >
                                 <Link href={ `/products/${ item.product.id }` } className="flex items-start gap-4 w-full md:w-2/3">
-                                    <Image
+                                    <Image unoptimized
                                         src={ item.product.images?.[0] ?? '/assets/fallback-image.png' }
                                         alt={ item.product.title }
                                         width={ 80 }

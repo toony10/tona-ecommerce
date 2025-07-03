@@ -107,7 +107,7 @@ export default function SearchBar() {
                     type="submit"
                     className='h-9 px-4 rounded-md flex items-center justify-center gap-1.5 cursor-pointer'
                 >
-                    <Image src='/assets/search.png' alt='search' width={ 20 } height={ 20 } />
+                    <Image unoptimized src='/assets/search.png' alt='search' width={ 20 } height={ 20 } />
                 </Button>
             </form>
 
@@ -127,7 +127,7 @@ export default function SearchBar() {
                                     onClick={ () => handleSuggestionClick(product) }
                                 >
                                     <div className="relative w-12 h-12 flex-shrink-0">
-                                        <Image
+                                        <Image unoptimized
                                             src={ product.images?.[0] ?? '/assets/fallback-image.png' }
                                             alt={ product.title }
                                             fill

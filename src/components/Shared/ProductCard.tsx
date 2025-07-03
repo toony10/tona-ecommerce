@@ -14,8 +14,8 @@ export default function ProductCard(product: Product) {
                             { product.discount_percentage }% OFF
                         </div>
                     ) }
-                    <Image src={ product.images?.[0] ?? './assets/fallback-image.png' } fill alt="product" className="absolute z-10 hover:opacity-0 transition-all duration-[600ms] object-cover" />
-                    <Image src={ product.images?.[1] ?? './assets/fallback-image.png' } fill sizes="100vh" alt="product" className='object-cover' />
+                    <Image unoptimized src={ product.images?.[0] ?? './assets/fallback-image.png' } fill alt="product" className="absolute z-10 hover:opacity-0 transition-all duration-[600ms] object-cover" />
+                    <Image unoptimized src={ product.images?.[1] ?? './assets/fallback-image.png' } fill sizes="100vh" alt="product" className='object-cover' />
                 </div>
             </Link>
             <div className="p-0.5 flex flex-col gap-2">

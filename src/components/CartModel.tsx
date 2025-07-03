@@ -37,7 +37,7 @@ export default function CartModel({ closeCart }: CartModelProps) {
                     cart.map((item, index) => (
                         <div key={ index } className='flex w-full items-center gap-5 p-2'>
                             <div className='w-1/3'>
-                                <Image
+                                <Image unoptimized
                                     src={ item.product.images?.[0] ?? '/assets/fallback-image.png' }
                                     alt={ item.product.title }
                                     width={ 80 }
