@@ -51,7 +51,7 @@ export function AddCartModle({ product, sizes }: Props) {
                     <DrawerHeader>
                         <DrawerDescription>Customize your order! </DrawerDescription>
                         <div className="flex items-center gap-5 justify-between">
-                            <Image src={ product?.images?.[0] ?? './assets/fallback-image.png' } alt={ product?.title ?? "Product image" } width={ 50 } height={ 50 } className="rounded-md" />
+                            <Image unoptimized src={ product?.images?.[0] ?? './assets/fallback-image.png' } alt={ product?.title ?? "Product image" } width={ 50 } height={ 50 } className="rounded-md" />
                             <DrawerTitle>{ product?.title }</DrawerTitle>
                         </div>
                     </DrawerHeader>

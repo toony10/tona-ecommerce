@@ -9,16 +9,9 @@ import { useCartStore } from '@/store/cart.store'
 import { Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import CheckoutBtn from './Shared/CheckoutBtn'
-import { useUserStore } from '@/store/user.store'
 
-// Add prop type for closeCart
-interface CartModelProps {
-    closeCart: () => void;
-}
-
-export default function CartModel({ closeCart }: CartModelProps) {
+export default function CartModel() {
     const { cart, removeFromCart } = useCartStore()
-    const { user } = useUserStore();
 
     const total = cart.reduce((sum, item) => {
         const price = item.product.discount_percentage
@@ -37,7 +30,7 @@ export default function CartModel({ closeCart }: CartModelProps) {
                     cart.map((item, index) => (
                         <div key={ index } className='flex w-full items-center gap-5 p-2'>
                             <div className='w-1/3'>
-                                <Image
+                                <Image unoptimized
                                     src={ item.product.images?.[0] ?? '/assets/fallback-image.png' }
                                     alt={ item.product.title }
                                     width={ 80 }
@@ -80,18 +73,13 @@ export default function CartModel({ closeCart }: CartModelProps) {
                         Shipping and taxes calculated at checkout
                     </p>
                     <div className='flex items-center justify-between p-2'>
-
                         <Link href='/cart' >
-                            <Button className='text-gray-950 bg-gray-100 border-2 border-gray-200 cursor-pointer' onClick={ closeCart }>
+                            <Button className='text-gray-950 bg-gray-100 border-2 border-gray-200 cursor-pointer'>
                                 View Cart
                             </Button>
                         </Link>
 
-                        { user ? (
-                            <CheckoutBtn onClick={ closeCart } />
-                        ) : (
-                            <CheckoutBtn />
-                        ) }
+                        <CheckoutBtn />
                     </div>
                 </>
             ) }
