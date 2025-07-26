@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
