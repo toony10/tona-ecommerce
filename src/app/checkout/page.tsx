@@ -17,9 +17,9 @@ if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
-const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = useCartStore()
 
-export default function page() {
+export default function Checkout() {
+    const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = useCartStore()
 
     const amountAfterDiscount = cart.reduce((sum, item) => {
         const price = item.product.discount_percentage
