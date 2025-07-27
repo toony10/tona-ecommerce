@@ -17,8 +17,9 @@ if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
+const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = useCartStore()
+
 export default function page() {
-    const { cart, removeFromCart, clearCart, increaseQuantity, decreaseQuantity } = useCartStore()
 
     const amountAfterDiscount = cart.reduce((sum, item) => {
         const price = item.product.discount_percentage
@@ -34,7 +35,7 @@ export default function page() {
             </div>
             <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2">Your cart is empty</h2>
             <p className="text-gray-600 mb-8 max-w-md text-sm md:text-base">
-                Looks like you haven't added anything to your cart yet. Start shopping to fill it up!
+                Looks like you haven&apos;t added anything to your cart yet. Start shopping to fill it up!
             </p>
             <Link href="/products" className=" custom-pointer z-50">
                 <Button size="lg" className="px-6 md:px-8 py-3 w-full sm:w-auto font-bold text-lg text-blue-500">
