@@ -17,7 +17,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        console.log('Fetching payment intent for amount:', amount);
+        console.log('Fetching payment intent for amount:', amount.toFixed(2));
 
         fetch("/api/create-payment-intent", {
             method: "POST",
@@ -111,7 +111,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
                     cursor: loading ? "not-allowed" : "pointer"
                 } }
             >
-                { loading ? "Processing..." : `Pay $${ amount }` }
+                { loading ? "Processing..." : `Pay $${ amount.toFixed(2) }` }
             </button>
         </form>
     );
