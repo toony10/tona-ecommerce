@@ -10,8 +10,8 @@ import { Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import CheckoutBtn from './Shared/CheckoutBtn'
 import { useUserStore } from '@/store/user.store'
+import priceAfterDiscount from '@/lib/priceAfterDiscount'
 
-// Add prop type for closeCart
 interface CartModelProps {
     closeCart: () => void;
 }
@@ -22,7 +22,7 @@ export default function CartModel({ closeCart }: CartModelProps) {
 
     const total = cart.reduce((sum, item) => {
         const price = item.product.discount_percentage
-            ? item.product.price * (1 - item.product.discount_percentage / 100)
+            ? priceAfterDiscount(item.product.price, item.product.discount_percentage)
             : item.product.price
         return sum + price * item.quantity
     }, 0)
@@ -36,7 +36,7 @@ export default function CartModel({ closeCart }: CartModelProps) {
                 ) : (
                     cart.map((item, index) => (
                         <div key={ index } className='flex w-full items-center gap-5 p-2'>
-                            <div className='w-1/3'>
+                            <div className='w-1/3 relative'>
                                 <Image unoptimized
                                     src={ item.product.images?.[0] ?? '/assets/fallback-image.png' }
                                     alt={ item.product.title }
@@ -44,15 +44,27 @@ export default function CartModel({ closeCart }: CartModelProps) {
                                     height={ 80 }
                                     className='rounded-sm object-cover'
                                 />
+                                { item.product.discount_percentage ? (
+                                    <div className='absolute -top-2 -right-4'>
+                                        <span className='bg-red-500 text-white text-xs px-1 py-1 rounded-full font-bold'>
+                                            - { item.product.discount_percentage }%
+                                        </span>
+                                    </div>
+                                ) : '' }
                             </div>
                             <div className='flex flex-col justify-between gap-2 p-2 h-full w-full'>
                                 <div className='flex items-center justify-between'>
                                     <div className='text-sm font-semibold line-clamp-2'>{ item.product.title }</div>
-                                    <div className='text-sm font-bold'>
-                                        ${ item.product.discount_percentage
-                                            ? (item.product.price * (1 - item.product.discount_percentage / 100)).toFixed(2)
-                                            : item.product.price.toFixed(2) }
-                                    </div>
+
+                                    { item.product.discount_percentage ? (
+                                        <div className='flex flex-col items-center gap-1'>
+                                            <span className='text-sm font-bold'>${ (priceAfterDiscount(item.product.price, item.product.discount_percentage) * item.quantity).toFixed(2) }</span>
+                                            <span className='text-xs font-bold text-gray-500 line-through'>${ (item.product.price * item.quantity).toFixed(2) }</span>
+                                        </div>
+                                    ) : (<div className='flex flex-col items-center gap-1'>
+                                        <span className='text-sm font-bold'>${ (item.product.price * item.quantity).toFixed(2) }</span>
+                                    </div>) }
+
                                 </div>
                                 <div className='flex items-center justify-between text-xs text-gray-600'>
                                     <div>Qty: { item.quantity }</div>

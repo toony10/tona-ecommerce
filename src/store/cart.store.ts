@@ -7,6 +7,8 @@ export interface CartState {
   addToCart: (item: CartItem) => void;
   removeFromCart: (index: number) => void;
   clearCart: () => void;
+  increaseQuantity: (index: number) => void;
+  decreaseQuantity: (index: number) => void;
 }
 
 export const useCartStore = create<CartState>()(
@@ -23,6 +25,22 @@ export const useCartStore = create<CartState>()(
             cart: state.cart.filter((_, i) => i !== index),
           })),
         clearCart: () => set({ cart: [] }),
+        increaseQuantity: (index: number) =>
+          set((state) => ({
+            cart: state.cart.map((item, i) =>
+              i === index ? { ...item, quantity: item.quantity + 1 } : item,
+            ),
+          })),
+        decreaseQuantity: (index: number) =>
+          set((state) => ({
+            cart: state.cart.map((item, i) =>
+              i === index
+                ? { ...item, quantity: item.quantity - 1 }
+                : item.quantity === 1
+                ? item
+                : { ...item, quantity: item.quantity - 1 },
+            ),
+          })),
       }),
       {
         name: 'cart-storage',
